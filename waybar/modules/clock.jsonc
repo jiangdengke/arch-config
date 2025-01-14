@@ -1,8 +1,9 @@
     "clock": {
-        "format": "{:%I:%M %p}",
+        "format": "<span rise='1pt' size='115%'>{:%I:%M %p}</span>",
         "rotate": ${r_deg},
-        "format-alt": "{:%R 󰃭 %d·%m·%y}",
-        "tooltip-format": "<span>{calendar}</span>",
+        "interval": 1,
+        "format-alt": "<span rise='1pt' size='115%'>{:%R:%S 󰃭 %d·%m·%y}</span>",
+        "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode": "month",
             "mode-mon-col": 3,

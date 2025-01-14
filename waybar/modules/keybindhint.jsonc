@@ -1,6 +1,6 @@
     "custom/keybindhint": {
-        "format": " ",
-        "tooltip-format": " Keybinds",
+        "format": "<span size='130%'> </span>",
+        "tooltip-format": "get keybind hints  ",
         "rotate": ${r_deg},
         "on-click": "keybinds_hint.sh"
     },
