@@ -1,4 +1,2 @@
-require "jdk.options"
-require "jdk.keymaps"
-require "jdk.plugins"
-require "jdk.colorscheme"
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
