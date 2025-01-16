@@ -5,6 +5,9 @@
 [manager]
 
 keymap = [
+  { on = "T",         run  = "plugin max-preview",desc = "将预览最大化"},
+  { on = [ "c", "a" ],run  = "plugin compress",desc = "将选定文件压缩为压缩包"},
+  { on = "l",     run  = "plugin smart-enter",desc = "按l直接打开文件"},
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
 	{ on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
 	{ on = "q",     run = "quit",               desc = "Quit the process" },
