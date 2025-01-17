@@ -5,6 +5,7 @@
 [manager]
 
 keymap = [
+  { on = "u", run = "plugin unzip", desc = "解压缩选定的文件" },
   { on = "T",         run  = "plugin max-preview",desc = "将预览最大化"},
   { on = [ "c", "a" ],run  = "plugin compress",desc = "将选定文件压缩为压缩包"},
   { on = "l",     run  = "plugin smart-enter",desc = "按l直接打开文件"},
