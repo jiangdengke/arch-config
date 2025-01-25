@@ -38,5 +38,10 @@ use = "ahkohd/eza-preview"
 rev = "5ef05bc"
 hash = "72355a6c8b7c8de6ed4dda0f98f86fee"
 
+[[plugin.deps]]
+use = "grappas/wl-clipboard"
+rev = "c4edc4f"
+hash = "51ff959c3c26cb3889589a0f8d394f14"
+
 [flavor]
 deps = []
