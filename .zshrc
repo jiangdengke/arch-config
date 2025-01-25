@@ -1,3 +1,5 @@
+# 初始化starship
+eval "$(starship init zsh)"
 # 为 nvim 创建别名 'n'
 alias n='nvim'
 # 初始化zoxide
