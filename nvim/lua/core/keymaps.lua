@@ -13,11 +13,13 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- 窗口
 keymap.set("n", "<leader>sv", "<C-w>v") -- 水平新增窗口 
 keymap.set("n", "<leader>sh", "<C-w>s") -- 垂直新增窗口
--- 保存推出
+-- 保存退出
 keymap.set("n", "<leader>wq", ":wq<CR>") -- 保存退出
 keymap.set("n", "<leader>qq", ":q!<CR>") -- 退出不保存
 keymap.set("n", "<leader>w", ":w<CR>") -- 退出不保存
-
+-- 移动
+keymap.set("n", "J", "5j") -- 退出不保存
+keymap.set("n", "K", "5k") -- 退出不保存
 -- 取消高亮
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
