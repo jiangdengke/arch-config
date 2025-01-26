@@ -22,7 +22,8 @@ keymap.set("n", "J", "5j") -- 退出不保存
 keymap.set("n", "K", "5k") -- 退出不保存
 -- 取消高亮
 keymap.set("n", "<leader>nh", ":nohl<CR>")
-
+-- markdown
+keymap.set("n", "<leader>rr", ":MarkdownPreview<CR>")
 -- 切换buffer
 keymap.set("n", "<C-L>", ":bnext<CR>")
 keymap.set("n", "<C-H>", ":bprevious<CR>")

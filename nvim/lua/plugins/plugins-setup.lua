@@ -45,6 +45,11 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim',  -- 文件检索
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+})
+
   if packer_bootstrap then
     require('packer').sync()
   end
