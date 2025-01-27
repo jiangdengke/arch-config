@@ -23,11 +23,14 @@ keymap.set("n", "K", "5k") -- 退出不保存
 -- 取消高亮
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 -- markdown
-keymap.set("n", "<leader>rr", ":MarkdownPreview<CR>")
+keymap.set("n", "<leader>m", ":MarkdownPreview<CR>")
+-- 图片粘贴
+keymap.set("n", "<leader>p", ":PasteImage<CR>")
+keymap.set("n", "<leader>la", ":Lazy<CR>")
 -- 切换buffer
 keymap.set("n", "<C-L>", ":bnext<CR>")
 keymap.set("n", "<C-H>", ":bprevious<CR>")
 
 -- ---------- 插件 ---------- ---
--- nvim-tree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+-- Neo-tree
+keymap.set("n", "<leader>e", ":Neotree<CR>")
