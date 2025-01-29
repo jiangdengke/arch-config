@@ -43,5 +43,20 @@ use = "grappas/wl-clipboard"
 rev = "c4edc4f"
 hash = "51ff959c3c26cb3889589a0f8d394f14"
 
+[[plugin.deps]]
+use = "TD-Sky/sudo"
+rev = "f403008"
+hash = "bd78d2296020f9b410e2c47bc7eb6375"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "f202fa8"
+hash = "4c7e8fd0266eedee7b619d966bd2d025"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:jump-to-char"
+rev = "f202fa8"
+hash = "72c66a0b3d60f8377eb9db5e1d8b60b2"
+
 [flavor]
 deps = []
