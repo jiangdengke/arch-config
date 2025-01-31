@@ -25,7 +25,6 @@ require("lazy").setup({
 	require("config.plugins.lualine"),
 	require("config.plugins.imgclip"),
 	require("config.plugins.markdown-preview"),
-	require("config.plugins.tokyonight"),
 	require("config.plugins.neo-tree"),
 	require("config.plugins.gitsigns"),
 	require("config.plugins.mini-pairs"),
@@ -38,4 +37,6 @@ require("lazy").setup({
 	require("config.plugins.vim-easy-align"),
 	require("config.plugins.mason"),
 	require("config.plugins.nvim-lint"),
+	require("config.plugins.yazi-nvim"),
+	require("config.plugins.autocomplete"),
 })
