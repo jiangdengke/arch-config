@@ -1,4 +1,10 @@
 *
 !.gitignore
+
+# 不忽略 sway 目录及其所有内容
+!sway/
 !sway/**
+
+# 不忽略 rofi 目录及其所有内容
+!rofi/
 !rofi/**
