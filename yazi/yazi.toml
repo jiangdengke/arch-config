@@ -114,10 +114,10 @@ image_bound = [0, 0]
 suppress_preload = false
 
 [plugin]
-# prepend_fetchers = [
-#   { id = "git", name = "*", run = "git" },
-#   { id = "git", name = "*/", run = "git" }
-# ]
+prepend_fetchers = [
+  { id = "git", name = "*", run = "git" },
+  { id = "git", name = "*/", run = "git" }
+]
 fetchers = [
   # Mimetype
   { id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
@@ -147,7 +147,7 @@ preloaders = [
   { mime = "font/*", run = "font" },
   { mime = "application/ms-opentype", run = "font" },
 ]
-prepend_previewers = [{ name = "*/", run = "eza-preview" }]
+# prepend_previewers = [{ name = "*/", run = "eza-preview" }]
 previewers = [
   { name = "*/", run = "folder", sync = true },
   # Code
