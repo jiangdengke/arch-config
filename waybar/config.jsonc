@@ -8,10 +8,9 @@
   "passthrough": false,
   "gtk-layer-shell": true,
   
-  "modules-left":   ["custom/padd","custom/l_end","custom/button","custom/r_end","custom/l_end","clock","custom/r_end","custom/l_end","cpu", "memory", "custom/gpu","custom/r_end","custom/padd"],
+  "modules-left":   ["custom/l_end","clock","custom/r_end","custom/l_end","cpu", "memory", "custom/gpu","custom/r_end","custom/padd"],
   "modules-center": ["custom/padd","custom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/padd"],
-  "modules-right":  ["custom/padd","custom/l_end","tray", "network", "backlight", "pulseaudio","battery", "custom/power","custom/r_end","custom/padd"],
-
+  "modules-right":  ["custom/padd","custom/l_end","tray", "backlight", "pulseaudio","battery","custom/r_end"],
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -36,8 +35,9 @@
         "max-length": 1000
     },
   "tray": {
-    "icon-size": 13,
-    "spacing": 10
+    "icon-size": 15,
+    "spacing": 10,
+    "reverse-direction": true,
   },
   "backlight":{
     "device": "intel_backlight",
@@ -47,12 +47,12 @@
     "on-scroll-down": "brightnessctl set 1%-",
     "min-length": 6 
   },
-  "custom/button": {
-    "format": "󰣇",
-    "interval": "once",
-    "on-click": "sleep 0.1 && ~/.config/waybar/scripts/launcher.sh",
-    "tooltip": false
-  },
+  //"custom/button": {
+  //  "format": "󰣇",
+  //  "interval": "once",
+  //  "on-click": "sleep 0.1 && ~/.config/waybar/scripts/launcher.sh",
+  //  "tooltip": false
+  //},
   "battery": {
     "states": {
       "good": 95,
@@ -90,16 +90,16 @@
         }
     },
 
-  "network": {
-      // "interface": "wlp2*", // (Optional) To force the use of this interface
-      "format-wifi": "󰤨 {essid}",
-      "format-ethernet": "󱘖 Wired",
-      "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
-      "format-linked": "󱘖 {ifname} (No IP)",
-      "format-disconnected": " 式字符串的语法问题，导致 Waybar 无法正确解析。具体问题在于将图标字符包含在大括号 {} 内，这会导致 invaliDisconnected",
-      "format-alt": "󰤨 {signalStrength}%",
-      "interval": 5
-  },
+  //"network": {
+  //    // "interface": "wlp2*", // (Optional) To force the use of this interface
+  //    "format-wifi": "󰤨 {essid}",
+  //    "format-ethernet": "󱘖 Wired",
+  //    "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+  //    "format-linked": "󱘖 {ifname} (No IP)",
+  //    "format-disconnected": " 式字符串的语法问题，导致 Waybar 无法正确解析。具体问题在于将图标字符包含在大括号 {} 内，这会导致 invaliDisconnected",
+  //    "format-alt": "󰤨 {signalStrength}%",
+  //    "interval": 5
+  //},
 
   "pulseaudio": {
         "format": "{icon} {volume}",
@@ -154,10 +154,10 @@
     "tooltip": true,
     "max-length": 1000
   },
-  "custom/power": {
-    "format": "⏻",
-    "on-click": "~/.config/waybar/scripts/logoutlaunch.sh"
-  },
+  //"custom/power": {
+  //  "format": "⏻",
+  //  "on-click": "~/.config/waybar/scripts/logoutlaunch.sh"
+  //},
 
   "custom/l_end": {
         "format": " ",
@@ -202,6 +202,17 @@
     }
 }
 
+
+
+
+// positions generated based on config.ctl //
+
+	"modules-left": ["custom/padd","","custom/padd"],
+	"modules-center": ["custom/padd","","custom/padd"],
+	"modules-right": ["custom/padd","","custom/padd"],
+
+
+// sourced from modules based on config.ctl //
 
 
 
