@@ -6,6 +6,9 @@
 # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
+# conda
+# export PATH="/opt/anaconda/bin:$PATH"
+# eval "$(/opt/anaconda/bin/conda shell.zsh hook)"
 # 定义 fzf 预览函数
 fzf_preview() {
   local selected
@@ -42,8 +45,6 @@ eval "$(vfox activate zsh)"
 eval "$(starship init zsh)"
 
 # ------------------------------------------------------------
-# 设置 nvim 别名为 n，这样输入 n 就会启动 nvim 编辑器
-alias n='nvim'
 
 # ------------------------------------------------------------
 # 初始化 zoxide（增强目录跳转工具）
@@ -136,7 +137,9 @@ function in {
 
 # ------------------------------------------------------------
 # 定义一些有用的别名
-
+alias f='fastfetch'
+# 设置 nvim 别名为 n，这样输入 n 就会启动 nvim 编辑器
+alias n='nvim'
 # 清屏
 alias c='clear'
 
@@ -196,3 +199,19 @@ alias mkdir='mkdir -p'
 # ------------------------------------------------------------
 # 显示 Pokemon（通过 pokemon-colorscripts 工具展示带颜色的 Pokemon）
 pokemon-colorscripts --no-title -r 1,3,6
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/jdk/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/jdk/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/jdk/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/jdk/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

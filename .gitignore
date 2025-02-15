@@ -4,5 +4,6 @@
 # 但不忽略 .gitignore 本身
 !.gitignore
 
+!.p10k.zsh
 # 不忽略您想跟踪的特定文件，例如 config.yaml
 !.zshrc
