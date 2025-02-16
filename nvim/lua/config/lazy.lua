@@ -19,7 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-
 -- Setup lazy.nvim
 require("lazy").setup({
 	require("config.plugins.lualine"),
@@ -39,4 +38,5 @@ require("lazy").setup({
 	require("config.plugins.nvim-lint"),
 	require("config.plugins.yazi-nvim"),
 	require("config.plugins.autocomplete"),
+	require("config.plugins.im-select"),
 })
