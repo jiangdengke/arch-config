@@ -38,5 +38,4 @@ require("lazy").setup({
 	require("config.plugins.nvim-lint"),
 	require("config.plugins.yazi-nvim"),
 	require("config.plugins.autocomplete"),
-	require("config.plugins.im-select"),
 })
