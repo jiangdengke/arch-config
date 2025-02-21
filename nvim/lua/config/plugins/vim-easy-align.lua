@@ -1,3 +1,4 @@
+-- vim对齐插件
 return{
   "junegunn/vim-easy-align",
   config = function()

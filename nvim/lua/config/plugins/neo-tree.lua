@@ -1,3 +1,4 @@
+-- 文件树状结构，包括侧边栏，浮动窗口等
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",

@@ -39,4 +39,6 @@ require("lazy").setup({
 	require("config.plugins.yazi-nvim"),
 	require("config.plugins.autocomplete"),
 	require("config.plugins.vim-table-mode"),
+	require("config.plugins.yankbank"),
+	require("config.plugins.telescope"),
 })

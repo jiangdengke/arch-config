@@ -25,7 +25,7 @@ keymap.set("n", "<leader>nh", ":nohl<CR>")
 -- markdown
 keymap.set("n", "<leader>m", ":MarkdownPreview<CR>")
 -- 图片粘贴
-keymap.set("n", "<leader>p", ":PasteImage<CR>")
+-- keymap.set("n", "<leader>p", ":PasteImage<CR>")
 keymap.set("n", "<leader>la", ":Lazy<CR>")
 -- 切换buffer
 keymap.set("n", "<C-L>", ":bnext<CR>")

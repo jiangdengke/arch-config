@@ -1,3 +1,4 @@
+-- 在侧边栏显示git变更（如新增、修改、删除行）
 return {
     "lewis6991/gitsigns.nvim",
     opts = {

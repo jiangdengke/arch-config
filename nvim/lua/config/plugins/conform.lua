@@ -1,3 +1,4 @@
+-- 格式化工具
 return {
 	"stevearc/conform.nvim",
 	-- 从mason中加载格式化器
@@ -25,7 +26,7 @@ return {
 			html = { "prettier" },
 			json = { "prettier" },
 			yaml = { "prettier" },
-			markdown = { "prettier" },
+			markdown = { "vale" },
 		},
 
 		-- 保存时自动格式化

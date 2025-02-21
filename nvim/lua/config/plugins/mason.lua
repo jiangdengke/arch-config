@@ -1,3 +1,4 @@
+-- 插件管理工具。如语言服务器、格式化工具、代码检查器等
 return {
 	"williamboman/mason.nvim",
 	cmd = "Mason",
@@ -9,7 +10,8 @@ return {
 			"stylua",
 			"shfmt",
 			"taplo", -- 添加这一行
-            "prettier"
+            "prettier",
+            "vale",
 		},
 	},
 	---@param opts MasonSettings | {ensure_installed: string[]}

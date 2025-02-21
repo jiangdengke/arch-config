@@ -1,3 +1,4 @@
+-- 打出成对的()、{}等 
 return{
     "echasnovski/mini.pairs",
     opts = {

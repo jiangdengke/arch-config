@@ -33,9 +33,7 @@ ueberzug_offset = [0, 0, 0, 0]
 edit = [
   { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "unix" },
 ]
-open = [
-  { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
-]
+open = [{ run = 'xdg-open "$1"', desc = "Open", for = "linux" }]
 reveal = [
   { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
   { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
@@ -57,7 +55,7 @@ rules = [
     "reveal",
   ] },
   # Text
-  { mime = "*.pdf", use = [
+  { mime = "text/*", use = [
     "edit",
     "reveal",
   ] },
@@ -108,7 +106,7 @@ suppress_preload = false
 [plugin]
 prepend_fetchers = [
   { id = "git", name = "*", run = "git" },
-  { id = "git", name = "*/", run = "git" }
+  { id = "git", name = "*/", run = "git" },
 ]
 fetchers = [
   # Mimetype

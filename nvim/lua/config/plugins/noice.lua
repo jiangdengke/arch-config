@@ -1,3 +1,4 @@
+-- message、cmdline、popupmenu的UI
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",

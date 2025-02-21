@@ -1,3 +1,4 @@
+-- 自动补全插件
 return {
 	'saghen/blink.cmp',
 	dependencies = 'rafamadriz/friendly-snippets',

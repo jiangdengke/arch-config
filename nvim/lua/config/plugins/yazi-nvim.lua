@@ -1,4 +1,4 @@
----@type LazySpec
+---在nvim中调出yazi
 return {
   "mikavilpas/yazi.nvim",
   event = "VeryLazy",
