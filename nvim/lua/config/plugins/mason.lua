@@ -2,7 +2,7 @@
 return {
 	"williamboman/mason.nvim",
 	cmd = "Mason",
-	keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+	keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "打开Mason插件面板" } },
 	build = ":MasonUpdate",
 	opts_extend = { "ensure_installed" },
 	opts = {

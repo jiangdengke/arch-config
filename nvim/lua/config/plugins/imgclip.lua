@@ -8,7 +8,7 @@ return {
 	event = "VeryLazy",
 	config = function()
     -- 图片粘贴快捷键
-    vim.api.nvim_set_keymap("n", "<leader>p", ":PasteImage<CR>", { noremap = false, silent = true })
+    vim.api.nvim_set_keymap("n", "<C-p>", ":PasteImage<CR>", { noremap = false, silent = true })
 		require'img-clip'.setup {
 			default = {
 				dir_path = filename .. "assets", -- 图片保存路径：./文件名.assets

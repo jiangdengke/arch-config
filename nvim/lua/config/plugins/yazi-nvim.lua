@@ -8,20 +8,13 @@ return {
       "<leader>-",
       mode = { "n", "v" },
       "<cmd>Yazi<cr>",
-      desc = "Open yazi at the current file",
+      desc = "打开yazi在当前文件",
     },
     {
       -- Open in the current working directory
       "<leader>cw",
       "<cmd>Yazi cwd<cr>",
-      desc = "Open the file manager in nvim's working directory",
-    },
-    {
-      -- NOTE: this requires a version of yazi that includes
-      -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
-      "<c-up>",
-      "<cmd>Yazi toggle<cr>",
-      desc = "Resume the last yazi session",
+      desc = "打开文件管理器在nvim的工作目录",
     },
   },
   ---@type YaziConfig
