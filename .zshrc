@@ -137,6 +137,7 @@ function in {
 
 # ------------------------------------------------------------
 # 定义一些有用的别名
+alias vim='nvim'
 alias f='fastfetch'
 # 设置 nvim 别名为 n，这样输入 n 就会启动 nvim 编辑器
 alias n='nvim'
