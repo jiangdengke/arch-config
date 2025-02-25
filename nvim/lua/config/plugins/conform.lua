@@ -26,7 +26,7 @@ return {
 			html = { "prettier" },
 			json = { "prettier" },
 			yaml = { "prettier" },
-			markdown = { "vale" },
+			markdown = { "prettier" },
 		},
 
 		-- 保存时自动格式化
