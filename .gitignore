@@ -3,10 +3,17 @@
 !README.md
 # 不忽略 .gitignore 文件本身
 !.gitignore
+!hyde/
 !hyde/**
+!hypr/
 !hypr/**
+!kitty/
 !kitty/**
+!nvim/
 !nvim/**
+!waybar/
 !waybar/**
+!wechat-universal/
 !wechat-universal/**
+!yazi/
 !yazi/**

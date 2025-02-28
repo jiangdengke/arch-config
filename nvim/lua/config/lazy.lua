@@ -42,4 +42,7 @@ require("lazy").setup({
 	require("config.plugins.flash"),
 	require("config.plugins.which-key"),
 	require("config.plugins.yanky"),
+	require("config.plugins.mini-surround"),
+	require("config.plugins.lsp"),
+	require("config.plugins.mason-lspconfig"),
 })
