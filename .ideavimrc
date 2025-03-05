@@ -1,0 +1,146 @@
+"==============================
+" Leader Key 设置
+"==============================
+let mapleader = " "
+" ================================================================================================
+" = 插件 =====================================
+" ================================================================================================
+Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree'
+Plug 'easymotion/vim-easymotion'
+"==============================
+" 基本编辑设置
+"==============================
+" 复制到系统剪贴板
+set clipboard+=unnamed
+
+" 进入命令模式时，自动切换英文
+set keep-english-in-normal
+
+" 显示当前模式
+set showmode
+
+" 搜索相关设置
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" 光标上下方保留30行，避免光标过于接近屏幕边缘
+set scrolloff=30
+
+" 设置命令行的历史记录长度为200
+set history=200
+
+" 行号设置
+set number
+set relativenumber
+
+" 其他设置
+set which-key
+set timeoutlen=0
+set notimeout
+set wrap
+
+"==============================
+" 插件设置
+"==============================
+
+--- EasyMotion 设置 ---
+let g:EasyMotion_do_mapping = 0
+set easymotion
+nmap f <Plug>(easymotion-s)
+
+--- NERDTree 设置 ---
+set NERDTree
+" 打开或聚焦 NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+" 使用 <C-n> 打开/激活项目工具窗口
+nnoremap <C-n> :action ActivateProjectToolWindow<CR>
+
+" 使用 <C-t> 切换项目工具窗口的显示状态
+nnoremap <C-t> :action ToggleProjectToolWindow<CR>
+
+" 使用 <C-f> 打开搜索当前文件在项目中的位置
+" 需要根据具体的 IDE 命令调整，示例如下：
+nnoremap <C-f> :action "GotoCurrentFile" <CR>
+"==============================
+deaVim 配置文件" 自定义快捷键设置
+"==============================
+
+--- 缓冲区管理 ---
+" 退出当前 buffer
+nmap <C-q> :q<CR>
+
+--- 搜索相关快捷键 ---
+" ==========================
+" 文件搜索与导航
+" ==========================
+nmap <leader>ff <Action>(GotoFile)               " 文件搜索
+nmap <leader>fb <Action>(SearchEverywhere)      " 搜索所有
+nmap <leader>fr <Action>(ReplaceInPath)         " 全局替换
+nmap <leader>fg <Action>(FindInPath)            " 全局模糊搜索
+nmap gw <Action>(GotoClass)                     " 类查找
+nmap gs <Action>(FileStructurePopup)            " 类方法或类成员字段查找
+
+" ==========================
+" 其他搜索相关快捷键
+" ==========================
+" 关闭搜索高亮显示
+nnoremap <leader>nh :nohlsearch<CR>
+
+--- 标签页导航 ---
+nmap L <action>(NextTab)         " 移动到下一个标签页
+nmap H <action>(PreviousTab)     " 移动到上一个标签页
+
+--- 错误与测试代码导航 ---
+nmap ge <Action>(GotoNextError)    " 跳到下一个错误
+nmap gt <Action>(GotoTest)         " 跳到测试代码
+
+--- 方法导航 ---
+nmap gm <Action>(MethodUp)             " 跳到上一个方法
+nmap gn <Action>(MethodDown)           " 跳到下一个方法
+nmap gi <Action>(GotoImplementation)   " 跳到方法的具体实现或接口的实现
+nnoremap gd <Action>(GotoDeclaration)
+--- 项目依赖管理 ---
+nmap <leader>ms <Action>(ExternalSystem.ProjectRefreshAction) " Maven/Gradle 刷新项目
+
+--- IdeaVim 配置管理 ---
+" 将 <Space>/ 映射到打开终端
+map <leader>/ <action>(ActivateTerminalToolWindow)
+
+"==============================
+" 代码块移动快捷键
+"==============================
+" 向下移动选中的块
+vmap <S-J> :m '>+1<CR>gv=gv
+
+" 向上移动选中的块
+vmap <S-K> :m '<-2<CR>gv=gv
+
+"==============================
+" 光标移动快捷键
+"==============================
+" 向下移动 5 行
+nnoremap J 5j
+
+" 向上移动 5 行
+nnoremap K 5k
+
+"==============================
+" 代码格式化与优化
+"==============================
+" 格式化代码
+nnoremap <leader>fm :action ReformatCode<CR>
+
+" 优化 imports
+nnoremap <leader>fi :action OptimizeImports<CR>
+
+"==============================
+" 运行与注释
+"==============================
+" 运行代码
+nnoremap <leader>rr :action Run<CR>
+
+" 注释选中行
+xmap gc <action>(commentbylinecomment)<esc>
