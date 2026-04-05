@@ -1,6 +1,6 @@
 # Arch Software Backup
 
-These files are generated snapshots of the current Arch machine's software inventory.
+These files are snapshots of the current Arch machine's software inventory.
 
 ## Files
 
@@ -9,16 +9,6 @@ These files are generated snapshots of the current Arch machine's software inven
 - `arch/vscode-extensions.txt`: VS Code / Code - OSS extensions
 - `arch/flatpak.txt`: Flatpak app IDs, if Flatpak is installed
 - `arch/generated-at.txt`: export time, host and kernel
-
-## Refresh
-
-Run:
-
-```bash
-./scripts/export-arch-software.sh
-```
-
-This script only exports software lists. It does not install or remove anything.
 
 ## Restore
 

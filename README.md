@@ -29,7 +29,6 @@ My Arch Linux dotfiles and user-space configuration.
 - `tmux/`: tmux local overrides
 - `git/`: git config
 - `swww/`: wallpaper helper script
-- `scripts/`: maintenance/export scripts for this repo
 - `packages/arch/`: exported software lists for rebuilding another Arch machine
 
 ## Install on this machine
@@ -73,27 +72,9 @@ Files:
 - `pacman-foreign.txt`: explicitly installed AUR/foreign packages
 - `vscode-extensions.txt`: VS Code or Code - OSS extensions
 - `flatpak.txt`: Flatpak apps if Flatpak is installed
-- `generated-at.txt`: export timestamp and host metadata
+- `generated-at.txt`: snapshot timestamp and host metadata
 
-Refresh the inventory with:
-
-```bash
-./scripts/export-arch-software.sh
-```
-
-## What `scripts/export-arch-software.sh` does
-
-This script is only for exporting the current machine's software list into the repo.
-
-It does:
-
-- `pacman -Qqen`: exports explicitly installed official-repo packages
-- `pacman -Qqem`: exports explicitly installed foreign/AUR packages
-- `code --list-extensions` or `code-oss --list-extensions`: exports editor extensions
-- `flatpak list --app`: exports Flatpak app IDs when Flatpak exists
-- writes `generated-at.txt` with time, host and kernel
-
-It does not install anything. It only refreshes the backup lists under `packages/arch/`.
+These files are just snapshots of the current machine. When the software set changes, regenerate them manually and commit the updated files.
 
 ## Local-only secrets
 
