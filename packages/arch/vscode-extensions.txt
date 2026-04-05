@@ -1,4 +1,0 @@
-arzg.xcode-theme
-bmewburn.vscode-intelephense-client
-ms-ceintl.vscode-language-pack-zh-hans
-pkief.material-icon-theme

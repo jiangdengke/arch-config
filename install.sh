@@ -60,7 +60,6 @@ link_file "$repo_root/zsh/.zimrc" "$HOME/.zimrc"
 
 # 桌面/应用配置
 link_file "$repo_root/kitty" "$HOME/.config/kitty"
-link_file "$repo_root/nvim" "$HOME/.config/nvim"
 link_file "$repo_root/niri" "$HOME/.config/niri"
 link_file "$repo_root/rofi" "$HOME/.config/rofi"
 link_file "$repo_root/waybar" "$HOME/.config/waybar"
