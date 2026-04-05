@@ -1,0 +1,132 @@
+/**
+ * 精致小巧的 Rofi 主题
+ * 设计：深色毛玻璃效果，紧凑布局，柔和圆角
+ */
+
+configuration {
+    display-drun: "󰀻";
+    display-window: "";
+    display-combi: "";
+    display-run: "";
+    display-ssh: "";
+    drun-display-format: "{name}";
+    font: "MesloLGL Nerd Font 11";
+    modi: "window,run,drun,combi,ssh";
+    show-icons: true;
+    icon-theme: "Papirus";
+}
+
+* {
+    /* 现代柔和配色 */
+    bg0:     #1e1e2edd;
+    bg1:     #2a2a37;
+    bg2:     #363646;
+    fg0:     #e0def4;
+    fg1:     #c4c3ce;
+    accent:  #9ccfd8;
+    active:  #f6c177;
+    urgent:  #eb6f92;
+
+    background-color: transparent;
+    text-color: @fg0;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    background-color: @bg0;
+    border-radius: 16px;
+    width: 30%;
+    transparency: "real";
+    location: center;
+}
+
+mainbox {
+    children: [inputbar, listview];
+    padding: 10px;
+}
+
+inputbar {
+    background-color: @bg1;
+    border-radius: 10px;
+    children: [prompt, entry];
+    padding: 2px;
+    margin: 0 0 8px 0;
+}
+
+prompt {
+    background-color: @accent;
+    border-radius: 8px;
+    padding: 8px 12px;
+    text-color: @bg0;
+    font: "MesloLGL Nerd Font Bold 11";
+}
+
+entry {
+    padding: 8px 12px;
+    text-color: @fg0;
+    placeholder: "搜索...";
+    placeholder-color: @fg1;
+}
+
+listview {
+    cycle: true;
+    scrollbar: false;
+    dynamic: true;
+    lines: 6;
+}
+
+element {
+    border-radius: 10px;
+    padding: 6px 8px;
+    margin: 2px 0;
+}
+
+element normal.normal {
+    background-color: transparent;
+}
+
+element selected.normal {
+    background-color: @bg2;
+}
+
+element alternate.normal {
+    background-color: transparent;
+}
+
+element normal.active {
+    background-color: @active;
+    text-color: @bg0;
+}
+
+element selected.active {
+    background-color: @active;
+    text-color: @bg0;
+}
+
+element normal.urgent {
+    background-color: @urgent;
+    text-color: @fg0;
+}
+
+element selected.urgent {
+    background-color: @urgent;
+    text-color: @fg0;
+}
+
+element-icon {
+    size: 24px;
+    margin: 0 8px 0 0;
+}
+
+element-text {
+    vertical-align: 0.5;
+}
+
+error-message {
+    background-color: @urgent;
+    border-radius: 10px;
+    padding: 10px;
+}

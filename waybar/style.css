@@ -1,0 +1,172 @@
+@import 'colors-waybar.css';
+
+* {
+  border: none;
+  border-radius: 0px;
+  font-family: "MesloLGL Nerd Font", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
+  font-weight: 500;
+  font-size: 13px;
+  min-height: 0px;
+}
+
+window#waybar {
+  background: transparent;
+  color: @foreground;
+}
+
+
+tooltip {
+  background: @overlay;
+  color: @text;
+  border-radius: 10px;
+  border: 2px solid @accent;
+  padding: 12px;
+  font-family: "MesloLGL Nerd Font", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
+}
+
+/* 日历 tooltip 特殊样式 */
+tooltip.clock {
+  padding: 16px;
+  min-width: 280px;
+  font-family: "MesloLGL Nerd Font", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
+}
+
+#workspaces button {
+  box-shadow: none;
+  text-shadow: none;
+  padding: 0px;
+  border-radius: 8px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  color: @muted;
+  transition: all 0.3s ease;
+}
+
+#workspaces button.active {
+  background: @accent;
+  color: @base;
+  margin-left: 2px;
+  padding-left: 11px;
+  padding-right: 11px;
+  margin-right: 2px;
+  transition: all 0.3s ease;
+}
+
+#workspaces button:hover {
+  background: @overlay;
+  color: @text;
+  padding-left: 2px;
+  padding-right: 2px;
+  transition: all 0.3s ease;
+}
+
+#custom-power,
+#clock,
+#battery,
+#pulseaudio,
+#bluetooth,
+#custom-bluetooth,
+#network,
+#workspaces,
+#tray,
+#backlight,
+#custom-gpu,
+#custom-button,
+#window,
+#cpu,
+#memory,
+#custom-l_end,
+#custom-r_end,
+#custom-sl_end,
+#custom-sr_end,
+#custom-rl_end,
+#custom-rr_end {
+  color: @text;
+  background: @background;
+  opacity: 1;
+  margin: 3px 0px 3px 0px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#workspaces,
+#tray {
+  padding: 0px;
+}
+
+#custom-r_end {
+  border-radius: 0px 12px 12px 0px;
+  margin-right: 8px;
+  padding-right: 0px;
+}
+
+#custom-l_end {
+  border-radius: 12px 0px 0px 12px;
+  margin-left: 8px;
+  padding-left: 0px;
+}
+
+#custom-sr_end {
+  border-radius: 0px;
+  margin-right: 8px;
+  padding-right: 0px;
+}
+
+#custom-sl_end {
+  border-radius: 0px;
+  margin-left: 8px;
+  padding-left: 0px;
+}
+
+#custom-rr_end {
+  border-radius: 0px 7px 7px 0px;
+  margin-right: 8px;
+  padding-right: 0px;
+}
+
+#custom-rl_end {
+  border-radius: 7px 0px 0px 7px;
+  margin-left: 8px;
+  padding-left: 0px;
+}
+
+/* 窗口标题高亮 */
+#window {
+  color: @accent;
+  font-weight: 600;
+}
+
+/* 时钟高亮 */
+#clock {
+  font-weight: 600;
+}
+
+/* 特殊状态颜色 */
+#battery.charging {
+  color: @success;
+}
+
+#battery.warning {
+  color: @warning;
+}
+
+#battery.critical {
+  color: @urgent;
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+#pulseaudio.muted {
+  color: @muted;
+}
+
+#network.disconnected {
+  color: @urgent;
+}

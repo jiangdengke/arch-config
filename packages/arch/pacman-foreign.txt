@@ -1,0 +1,11 @@
+codex-app-bin
+debtap
+flclash-bin
+google-chrome
+linuxqq-appimage
+msodbcsql
+mssql-tools
+php-sqlsrv
+sunloginclient
+termius
+wechat

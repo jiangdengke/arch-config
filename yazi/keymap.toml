@@ -1,0 +1,49 @@
+[[mgr.prepend_keymap]]
+on = [ "l" ]
+run = "plugin smart-enter"
+desc = "Enter directory or open file"
+
+[[mgr.prepend_keymap]]
+on = [ "M" ]
+run = "plugin mount"
+desc = "Open mount manager"
+
+[[mgr.prepend_keymap]]
+on = [ "p" ]
+run = "plugin smart-paste"
+desc = "Paste into hovered directory or CWD"
+
+[[mgr.prepend_keymap]]
+on = [ "+" ]
+run = "plugin zoom 1"
+desc = "Zoom in preview image"
+
+[[mgr.prepend_keymap]]
+on = [ "-" ]
+run = "plugin zoom -1"
+desc = "Zoom out preview image"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "h" ]
+run = "cd ~"
+desc = "Cd to home"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "c" ]
+run = "cd ~/.config"
+desc = "Cd to ~/.config"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "d" ]
+run = "cd ~/Downloads"
+desc = "Cd to ~/Downloads"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "p" ]
+run = "cd ~/Pictures"
+desc = "Cd to ~/Pictures"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "y" ]
+run = "cd ~/.config/yazi"
+desc = "Cd to Yazi config"
