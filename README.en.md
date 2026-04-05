@@ -26,7 +26,7 @@ This is my Arch Linux user-space configuration repository.
 - `waybar/`: bar config
 - `yazi/`: Yazi config and local plugins
 - `fcitx5/`: input method config and themes
-- `tmux/`: tmux local overrides
+- `tmux/`: tmux base config and local overrides
 - `git/`: Git config
 - `swww/`: wallpaper helper script
 - `packages/arch/`: software inventory snapshots from the current machine
@@ -41,6 +41,7 @@ cd ~/dotfiles
 ```
 
 The script backs up existing targets with a timestamped `.bak.*` suffix, then creates symlinks into this repo.
+The main managed targets include `~/.zshrc`, `~/.zprofile`, `~/.zimrc`, `~/.gitconfig`, `~/.tmux.conf`, `~/.tmux.conf.local`, and the related `~/.config/*` directories.
 
 ## Restore on another Arch machine
 
@@ -54,8 +55,10 @@ Example:
 git clone git@github.com:jiangdengke/arch-config.git ~/dotfiles
 cd ~/dotfiles
 
-sudo pacman -S --needed - < packages/arch/pacman-native.txt
-paru -S --needed - < packages/arch/pacman-foreign.txt
+xargs -r sudo pacman -S --needed -- < packages/arch/pacman-native.txt
+
+# If `paru` is not installed yet, install it first, then restore AUR / foreign packages.
+xargs -r paru -S --needed -- < packages/arch/pacman-foreign.txt
 
 ./install.sh
 ```

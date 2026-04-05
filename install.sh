@@ -70,6 +70,7 @@ link_file "$repo_root/swww/swww-random.sh" "$HOME/.config/swww-random.sh"
 link_file "$repo_root/git/.gitconfig" "$HOME/.gitconfig"
 
 # Tmux (gpakosz/.tmux)
+link_file "$repo_root/tmux/.tmux.conf" "$HOME/.tmux.conf"
 link_file "$repo_root/tmux/.tmux.conf.local" "$HOME/.tmux.conf.local"
 
 # Fcitx5

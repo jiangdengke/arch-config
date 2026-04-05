@@ -26,7 +26,7 @@
 - `waybar/`：状态栏配置
 - `yazi/`：Yazi 配置和本地插件
 - `fcitx5/`：输入法配置和主题
-- `tmux/`：tmux 本地覆盖配置
+- `tmux/`：tmux 基础配置和本地覆盖配置
 - `git/`：Git 配置
 - `swww/`：壁纸脚本
 - `packages/arch/`：当前机器的软件清单快照
@@ -41,6 +41,7 @@ cd ~/dotfiles
 ```
 
 脚本会先把已有文件备份成带时间戳的 `.bak.*`，再创建软链接到本仓库。
+目前会接管的主要目标包括：`~/.zshrc`、`~/.zprofile`、`~/.zimrc`、`~/.gitconfig`、`~/.tmux.conf`、`~/.tmux.conf.local`，以及对应的 `~/.config/*` 目录。
 
 ## 在另一台 Arch 上恢复
 
@@ -54,8 +55,10 @@ cd ~/dotfiles
 git clone git@github.com:jiangdengke/arch-config.git ~/dotfiles
 cd ~/dotfiles
 
-sudo pacman -S --needed - < packages/arch/pacman-native.txt
-paru -S --needed - < packages/arch/pacman-foreign.txt
+xargs -r sudo pacman -S --needed -- < packages/arch/pacman-native.txt
+
+# 如果目标机器还没有 paru，请先手动安装 paru，再恢复 AUR / foreign 包
+xargs -r paru -S --needed -- < packages/arch/pacman-foreign.txt
 
 ./install.sh
 ```
