@@ -45,14 +45,19 @@ The script backs up existing targets with a timestamped `.bak.*` suffix, then cr
 ## Restore on another Arch machine
 
 1. Clone this repo to `~/dotfiles`
-2. Run `./install.sh`
-3. Install packages from `packages/arch/`
+2. Install packages from `packages/arch/` first
+3. Run `./install.sh`
 
 Example:
 
 ```bash
+git clone git@github.com:jiangdengke/arch-config.git ~/dotfiles
+cd ~/dotfiles
+
 sudo pacman -S --needed - < packages/arch/pacman-native.txt
 paru -S --needed - < packages/arch/pacman-foreign.txt
+
+./install.sh
 ```
 
 ## Software inventory

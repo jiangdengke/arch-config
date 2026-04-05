@@ -45,14 +45,19 @@ cd ~/dotfiles
 ## 在另一台 Arch 上恢复
 
 1. 把仓库克隆到 `~/dotfiles`
-2. 执行 `./install.sh`
-3. 按 `packages/arch/` 里的清单安装软件
+2. 先按 `packages/arch/` 里的清单安装软件
+3. 再执行 `./install.sh`
 
 示例：
 
 ```bash
+git clone git@github.com:jiangdengke/arch-config.git ~/dotfiles
+cd ~/dotfiles
+
 sudo pacman -S --needed - < packages/arch/pacman-native.txt
 paru -S --needed - < packages/arch/pacman-foreign.txt
+
+./install.sh
 ```
 
 ## 软件清单
