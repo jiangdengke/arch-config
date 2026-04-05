@@ -1,31 +1,42 @@
 # Arch Software Backup
 
-Use these files to rebuild most of the user-facing software stack on another Arch machine.
+These files are generated snapshots of the current Arch machine's software inventory.
 
-Files:
+## Files
 
 - `arch/pacman-native.txt`: explicitly installed packages from official repos
-- `arch/pacman-foreign.txt`: explicitly installed foreign/AUR packages
+- `arch/pacman-foreign.txt`: explicitly installed AUR/foreign packages
 - `arch/vscode-extensions.txt`: VS Code / Code - OSS extensions
 - `arch/flatpak.txt`: Flatpak app IDs, if Flatpak is installed
+- `arch/generated-at.txt`: export time, host and kernel
 
-Refresh the lists on the current machine:
+## Refresh
+
+Run:
 
 ```bash
 ./scripts/export-arch-software.sh
 ```
 
-Restore on another Arch machine:
+This script only exports software lists. It does not install or remove anything.
+
+## Restore
 
 ```bash
 sudo pacman -S --needed - < packages/arch/pacman-native.txt
 paru -S --needed - < packages/arch/pacman-foreign.txt
-code --install-extension $(cat packages/arch/vscode-extensions.txt)
+xargs -r code --install-extension < packages/arch/vscode-extensions.txt
 ```
 
-This does not capture everything. You still need:
+If you use Code - OSS instead of VS Code:
+
+```bash
+xargs -r code-oss --install-extension < packages/arch/vscode-extensions.txt
+```
+
+## Not captured here
 
 - enabled services and timers
 - browser state and app data
 - machine-local secrets
-- any packages installed outside pacman/paru/flatpak/code
+- anything installed outside pacman/paru/flatpak/code
