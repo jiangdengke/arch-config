@@ -420,6 +420,9 @@ bind m run "cut -c3- '#{TMUX_CONF}' | sh -s _toggle_mouse" \; display 'mouse #{?
 # 你可以直接在 `tmux_conf_theme_status_left` 和
 # `tmux_conf_theme_status_right` 里使用它们。
 
+# 把 TPM 插件目录放到 XDG 数据目录，避免 tmux 启动时重新创建 `~/.tmux/`。
+set-environment -g TMUX_PLUGIN_MANAGER_PATH "#{HOME}/.local/share/tmux/plugins"
+
 # 默认在启动 tmux 时更新 tpm 和所有插件。
 #   - true（默认）
 #   - false
