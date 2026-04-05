@@ -1,137 +1,217 @@
 {
-  // ===== Bar 基本属性 =====
-  "layer": "top",            // 显示层级：top/overlay/bottom
-  "position": "top",         // 顶部
-  "mode": "dock",            // ← 修正：字段是 mode（不是 mod）
-  "height": 32,              // ★ Waybar 高度（像素）。不写则由字体/CSS决定
-  "exclusive": true,         // 为 bar 预留空间（避免窗口遮挡）
-  "passthrough": false,      // 鼠标事件是否透传到底下窗口
-  "gtk-layer-shell": true,   // 使用 gtk-layer-shell（Wayland）
+  // Waybar 置于最上层。
+  "layer": "top",
+  // Waybar 固定显示在屏幕顶部。
+  "position": "top",
+  // 以 dock 模式工作，让窗口管理器为它预留区域。
+  "mode": "dock",
+  // Waybar 高度为 32 像素。
+  "height": 32,
+  // 为 bar 预留空间，避免窗口覆盖到 bar。
+  "exclusive": true,
+  // 鼠标事件不透传给底下窗口。
+  "passthrough": false,
+  // 启用 gtk-layer-shell，以便在 Wayland 下稳定显示。
+  "gtk-layer-shell": true,
 
-  // ===== 模块布局 =====
-  "modules-left":   ["custom/l_end","clock","custom/r_end","custom/l_end","cpu","memory","custom/r_end","custom/padd"],
-  "modules-center": ["custom/padd","custom/l_end","niri/workspaces","niri/window","custom/r_end","custom/padd"],
-  "modules-right":  ["custom/padd","custom/l_end","tray","network","backlight","pulseaudio","battery","custom/r_end"],
+  // 左侧模块：时间、CPU、内存。
+  "modules-left": ["custom/l_end", "clock", "custom/r_end", "custom/l_end", "cpu", "memory", "custom/r_end", "custom/padd"],
+  // 中间模块：工作区和当前窗口标题。
+  "modules-center": ["custom/padd", "custom/l_end", "niri/workspaces", "niri/window", "custom/r_end", "custom/padd"],
+  // 右侧模块：托盘、网络、亮度、音量、电池。
+  "modules-right": ["custom/padd", "custom/l_end", "tray", "network", "backlight", "pulseaudio", "battery", "custom/r_end"],
 
-  // ===== Niri 工作区与窗口标题 =====
+  // Niri 工作区模块设置。
   "niri/workspaces": {
-    "disable-scroll": true,   // 滚轮不切工作区
-    "all-outputs": true,      // 在所有输出上显示
-    "on-click": "activate",   // 点击激活
-    // "format": "{icon}",     // 可自定义图标显示
-    "persistent_workspaces": { // 固定显示 1-10 号工作区
+    // 禁用滚轮切换工作区。
+    "disable-scroll": true,
+    // 在所有显示器上都显示工作区。
+    "all-outputs": true,
+    // 点击工作区按钮时直接激活它。
+    "on-click": "activate",
+    // 固定展示 1 到 10 号工作区，即使某些工作区当前为空。
+    "persistent_workspaces": {
       "1": [], "2": [], "3": [], "4": [], "5": [],
       "6": [], "7": [], "8": [], "9": [], "10": []
     }
   },
+
+  // Niri 当前窗口标题模块。
   "niri/window": {
-    "format": "  {}",        // ★ Arch 图标；需要 Nerd Font 才能显示
+    // 标题前显示 Arch 图标。
+    "format": "  {}",
+    // 每个输出各自显示自己的窗口标题。
     "separate-outputs": true,
+    // 允许标题很长，尽量不截断。
     "max-length": 1000
   },
 
-  // ===== 托盘 =====
+  // 托盘区域设置。
   "tray": {
+    // 托盘图标大小。
     "icon-size": 15,
+    // 图标间距。
     "spacing": 10,
-    "reverse-direction": true // 从右向左排列
+    // 反向排列，让新图标从右侧开始进入。
+    "reverse-direction": true
   },
 
-  // ===== 亮度 =====
-
+  // 背光模块设置。
   "backlight": {
+    // 读取 Intel 背光设备。
     "device": "intel_backlight",
+    // 显示图标和百分比。
     "format": "{icon} {percent}%",
-    "format-icons": ["󰃞","󰃟","󰃠"],
+    // 不同亮度下使用不同图标。
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    // 向上滚轮增加亮度。
     "on-scroll-up": "brightnessctl set 1%+",
+    // 向下滚轮降低亮度。
     "on-scroll-down": "brightnessctl set 1%-",
+    // 模块最小宽度，避免数字抖动。
     "min-length": 6
   },
 
-  // ===== 电池 =====
+  // 电池模块设置。
   "battery": {
+    // 定义不同电量阈值。
     "states": { "good": 95, "warning": 30, "critical": 20 },
+    // 默认显示图标和电量百分比。
     "format": "{icon} {capacity}%",
+    // 充电时显示插电图标。
     "format-charging": " {capacity}%",
+    // 接通电源时显示插电图标。
     "format-plugged": " {capacity}%",
+    // 切换格式时显示剩余时间。
     "format-alt": "{time} {icon}",
-    "format-icons": ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
+    // 不同电量下的图标列表。
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
   },
 
-  // ===== 时钟（点击右键切换模式、滚轮切换时区/周）=====
+  // 时钟模块设置。
   "clock": {
+    // 默认显示 12 小时制时间。
     "format": "{:%I:%M %p}",
+    // 不旋转文字。
     "rotate": 0,
+    // 切换显示时使用 24 小时制加日期。
     "format-alt": "{:%R 󰃭 %d·%m·%y}",
+    // tooltip 里显示日历。
     "tooltip-format": "<span>{calendar}</span>",
+    // 日历样式设置。
     "calendar": {
+      // 按月显示日历。
       "mode": "month",
+      // 每行显示 3 个月。
       "mode-mon-col": 3,
+      // 滚轮切换月份。
       "on-scroll": 1,
+      // 右键切换日历模式。
       "on-click-right": "mode",
+      // 月份、星期、今天的高亮样式。
       "format": {
-        "months":   "<span color='#ffead3'><b>{}</b></span>",
+        "months": "<span color='#ffead3'><b>{}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today":    "<span color='#ff6699'><b>{}</b></span>"
+        "today": "<span color='#ff6699'><b>{}</b></span>"
       }
     },
+    // 鼠标动作绑定。
     "actions": {
+      // 右键切换显示模式。
       "on-click-right": "mode",
+      // 前进按钮切换时区。
       "on-click-forward": "tz_up",
+      // 后退按钮切换时区。
       "on-click-backward": "tz_down",
+      // 滚轮向上切换时间偏移。
       "on-scroll-up": "shift_up",
+      // 滚轮向下切换时间偏移。
       "on-scroll-down": "shift_down"
     }
   },
 
-"pulseaudio": {
-  "format": "{icon} {volume}%",
-  "format-muted": "  muted",
-  "format-bluetooth": "{icon} {volume}%",
-  "tooltip-format": "{desc} — {volume}%",
-  "scroll-step": 5,
-"on-click":        "pavucontrol -t 3",
-"on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-"on-scroll-up":    "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
-"on-scroll-down":  "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-",
+  // 音量模块设置。
+  "pulseaudio": {
+    // 默认显示图标和音量百分比。
+    "format": "{icon} {volume}%",
+    // 静音时的显示文本。
+    "format-muted": "  muted",
+    // 蓝牙设备时追加蓝牙图标。
+    "format-bluetooth": "{icon} {volume}%",
+    // tooltip 显示设备描述和音量。
+    "tooltip-format": "{desc} — {volume}%",
+    // Waybar 内部滚动步长。
+    "scroll-step": 5,
+    // 左键打开 pavucontrol 的输出设备页。
+    "on-click": "pavucontrol -t 3",
+    // 中键切换默认输出静音。
+    "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    // 向上滚轮增大音量。
+    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
+    // 向下滚轮减小音量。
+    "on-scroll-down": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-",
+    // 根据音量区间显示不同图标。
+    "format-icons": { "default": ["", "", ""] }
+  },
 
-  "format-icons": { "default": ["","",""] }
-},
-
-
-  // ===== 内存 / CPU =====
+  // 内存模块设置。
   "memory": {
+    // 每秒刷新一次。
     "interval": 1,
+    // 默认显示内存使用百分比。
     "format": "  {}%",
+    // 切换格式时显示已用内存容量。
     "format-alt": "  {used}GB",
+    // 启用 tooltip。
     "tooltip": true,
+    // tooltip 中显示更详细的已用内存。
     "tooltip-format": "Memory - {used:0.1f}GB used"
   },
+
+  // CPU 模块设置。
   "cpu": {
+    // 每秒刷新一次。
     "interval": 1,
+    // 显示 CPU 使用率。
     "format": "  {usage}%"
   },
 
-  // ===== 网络模块（参考 HyDE 配置）=====
+  // 网络模块设置。
   "network": {
+    // 启用 tooltip。
     "tooltip": true,
+    // Wi-Fi 状态下只显示当前 SSID。
     "format-wifi": " {essid}",
+    // 有线网络时显示固定文本。
     "format-ethernet": "󱘖 Wired",
+    // 只有链路没有 IP 时显示接口名。
     "format-linked": "󱘖 {ifname} (No IP)",
+    // 断网时显示断开状态。
     "format-disconnected": "󰖪 Disconnected",
+    // 切换显示时展示信号和收发速率。
     "format-alt": " {signalStrength}% {bandwidthDownBytes} {bandwidthUpBytes}",
+    // tooltip 中显示网络详情。
     "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nDownload: <b>{bandwidthDownBytes}</b>\nUpload: <b>{bandwidthUpBytes}</b>",
+    // 断网时 tooltip 显示简短提示。
     "tooltip-format-disconnected": "Disconnected",
+    // 每 2 秒刷新一次网络状态。
     "interval": 2,
+    // 右键打开 NetworkManager 连接编辑器。
     "on-click-right": "nm-connection-editor"
   },
 
-  // ===== 纯填充的“空白”模块们 =====
+  // 左圆角占位模块。
   "custom/l_end": { "format": " ", "interval": "once", "tooltip": false },
+  // 右圆角占位模块。
   "custom/r_end": { "format": " ", "interval": "once", "tooltip": false },
+  // 小号左占位模块。
   "custom/sl_end": { "format": " ", "interval": "once", "tooltip": false },
+  // 小号右占位模块。
   "custom/sr_end": { "format": " ", "interval": "once", "tooltip": false },
+  // 更小号左占位模块。
   "custom/rl_end": { "format": " ", "interval": "once", "tooltip": false },
+  // 更小号右占位模块。
   "custom/rr_end": { "format": " ", "interval": "once", "tooltip": false },
-  "custom/padd":  { "format": "  ", "interval": "once", "tooltip": false }
+  // 纯空白间距模块。
+  "custom/padd": { "format": "  ", "interval": "once", "tooltip": false }
 }

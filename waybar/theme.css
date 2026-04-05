@@ -1,10 +1,17 @@
+/* 整个 bar 的背景透明。 */
 @define-color bar-bg rgba(0, 0, 0, 0);
 
+/* 主题主背景色。 */
 @define-color main-bg #11111b;
+/* 主题主前景色。 */
 @define-color main-fg #cdd6f4;
 
+/* 激活状态背景色。 */
 @define-color wb-act-bg #a6adc8;
+/* 激活状态前景色。 */
 @define-color wb-act-fg #313244;
 
+/* 悬停状态背景色。 */
 @define-color wb-hvr-bg #f5c2e7;
+/* 悬停状态前景色。 */
 @define-color wb-hvr-fg #313244;

@@ -1,48 +1,58 @@
+# 按 l 时启用 smart-enter：目录进入，文件打开。
 [[mgr.prepend_keymap]]
 on = [ "l" ]
 run = "plugin smart-enter"
 desc = "Enter directory or open file"
 
+# 按 M 打开挂载管理器。
 [[mgr.prepend_keymap]]
 on = [ "M" ]
 run = "plugin mount"
 desc = "Open mount manager"
 
+# 按 p 使用 smart-paste：优先粘贴到当前悬停目录。
 [[mgr.prepend_keymap]]
 on = [ "p" ]
 run = "plugin smart-paste"
 desc = "Paste into hovered directory or CWD"
 
+# 按 + 放大图片预览。
 [[mgr.prepend_keymap]]
 on = [ "+" ]
 run = "plugin zoom 1"
 desc = "Zoom in preview image"
 
+# 按 - 缩小图片预览。
 [[mgr.prepend_keymap]]
 on = [ "-" ]
 run = "plugin zoom -1"
 desc = "Zoom out preview image"
 
+# gh 快速回到家目录。
 [[mgr.prepend_keymap]]
 on = [ "g", "h" ]
 run = "cd ~"
 desc = "Cd to home"
 
+# gc 快速进入 ~/.config。
 [[mgr.prepend_keymap]]
 on = [ "g", "c" ]
 run = "cd ~/.config"
 desc = "Cd to ~/.config"
 
+# gd 快速进入下载目录。
 [[mgr.prepend_keymap]]
 on = [ "g", "d" ]
 run = "cd ~/Downloads"
 desc = "Cd to ~/Downloads"
 
+# gp 快速进入图片目录。
 [[mgr.prepend_keymap]]
 on = [ "g", "p" ]
 run = "cd ~/Pictures"
 desc = "Cd to ~/Pictures"
 
+# gy 快速进入 Yazi 自己的配置目录。
 [[mgr.prepend_keymap]]
 on = [ "g", "y" ]
 run = "cd ~/.config/yazi"

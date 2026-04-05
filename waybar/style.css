@@ -1,67 +1,113 @@
+/* 引入 Waybar 主配色变量。 */
 @import 'colors-waybar.css';
 
+/* 全局默认样式。 */
 * {
+  /* 去掉所有默认边框。 */
   border: none;
+  /* 默认不使用圆角，由具体模块单独控制。 */
   border-radius: 0px;
+  /* 优先使用 Nerd Font，其次中文字体。 */
   font-family: "MesloLGL Nerd Font", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
+  /* 默认字重。 */
   font-weight: 500;
+  /* 全局字号。 */
   font-size: 13px;
+  /* 避免 GTK 默认最小高度把 bar 撑大。 */
   min-height: 0px;
 }
 
+/* Waybar 主窗口。 */
 window#waybar {
+  /* 主背景透明，让模块卡片自己决定底色。 */
   background: transparent;
+  /* 默认文字颜色。 */
   color: @foreground;
 }
 
-
+/* 通用 tooltip 样式。 */
 tooltip {
+  /* tooltip 使用覆盖层背景。 */
   background: @overlay;
+  /* tooltip 文字颜色。 */
   color: @text;
+  /* tooltip 圆角。 */
   border-radius: 10px;
+  /* tooltip 外边框使用主题强调色。 */
   border: 2px solid @accent;
+  /* tooltip 内边距。 */
   padding: 12px;
+  /* tooltip 同样使用与 bar 一致的字体。 */
   font-family: "MesloLGL Nerd Font", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
 }
 
-/* 日历 tooltip 特殊样式 */
+/* 时钟日历 tooltip 的额外样式。 */
 tooltip.clock {
+  /* 日历 tooltip 更宽松的内边距。 */
   padding: 16px;
+  /* 保证日历最小宽度。 */
   min-width: 280px;
+  /* 继续沿用统一字体。 */
   font-family: "MesloLGL Nerd Font", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
 }
 
+/* 工作区按钮默认样式。 */
 #workspaces button {
+  /* 关闭默认阴影。 */
   box-shadow: none;
+  /* 关闭默认文字阴影。 */
   text-shadow: none;
+  /* 先清空默认 padding。 */
   padding: 0px;
+  /* 工作区按钮圆角。 */
   border-radius: 8px;
+  /* 上边距。 */
   margin-top: 2px;
+  /* 下边距。 */
   margin-bottom: 2px;
+  /* 左内边距。 */
   padding-left: 2px;
+  /* 右内边距。 */
   padding-right: 2px;
+  /* 未激活工作区使用弱化颜色。 */
   color: @muted;
+  /* 切换状态时启用平滑过渡。 */
   transition: all 0.3s ease;
 }
 
+/* 当前激活工作区样式。 */
 #workspaces button.active {
+  /* 激活时使用强调色背景。 */
   background: @accent;
+  /* 激活时文字变成深色。 */
   color: @base;
+  /* 左外边距，给按钮一些呼吸感。 */
   margin-left: 2px;
+  /* 激活按钮左右更宽。 */
   padding-left: 11px;
+  /* 激活按钮左右更宽。 */
   padding-right: 11px;
+  /* 右外边距。 */
   margin-right: 2px;
+  /* 切换时保持动画。 */
   transition: all 0.3s ease;
 }
 
+/* 鼠标悬停到工作区按钮时的样式。 */
 #workspaces button:hover {
+  /* 悬停时背景改为 overlay。 */
   background: @overlay;
+  /* 悬停时文字更亮。 */
   color: @text;
+  /* 悬停时收窄左右内边距。 */
   padding-left: 2px;
+  /* 悬停时收窄左右内边距。 */
   padding-right: 2px;
+  /* 保持动画。 */
   transition: all 0.3s ease;
 }
 
+/* 这些模块共享同一套“卡片”外观。 */
 #custom-power,
 #clock,
 #battery,
@@ -83,90 +129,108 @@ tooltip.clock {
 #custom-sr_end,
 #custom-rl_end,
 #custom-rr_end {
+  /* 模块文字颜色。 */
   color: @text;
+  /* 模块背景色。 */
   background: @background;
+  /* 模块完全不透明。 */
   opacity: 1;
+  /* 上下外边距，左右不额外留白。 */
   margin: 3px 0px 3px 0px;
+  /* 左内边距。 */
   padding-left: 4px;
+  /* 右内边距。 */
   padding-right: 4px;
 }
 
+/* 工作区模块自身不要额外内边距。 */
 #workspaces,
 #tray {
   padding: 0px;
 }
 
+/* 右圆角结束块。 */
 #custom-r_end {
   border-radius: 0px 12px 12px 0px;
   margin-right: 8px;
   padding-right: 0px;
 }
 
+/* 左圆角开始块。 */
 #custom-l_end {
   border-radius: 12px 0px 0px 12px;
   margin-left: 8px;
   padding-left: 0px;
 }
 
+/* 中间小号右结束块。 */
 #custom-sr_end {
   border-radius: 0px;
   margin-right: 8px;
   padding-right: 0px;
 }
 
+/* 中间小号左开始块。 */
 #custom-sl_end {
   border-radius: 0px;
   margin-left: 8px;
   padding-left: 0px;
 }
 
+/* 更小号右结束块。 */
 #custom-rr_end {
   border-radius: 0px 7px 7px 0px;
   margin-right: 8px;
   padding-right: 0px;
 }
 
+/* 更小号左开始块。 */
 #custom-rl_end {
   border-radius: 7px 0px 0px 7px;
   margin-left: 8px;
   padding-left: 0px;
 }
 
-/* 窗口标题高亮 */
+/* 当前窗口标题使用强调色。 */
 #window {
   color: @accent;
   font-weight: 600;
 }
 
-/* 时钟高亮 */
+/* 时钟加粗，让左侧视觉更稳定。 */
 #clock {
   font-weight: 600;
 }
 
-/* 特殊状态颜色 */
+/* 电池充电中使用成功色。 */
 #battery.charging {
   color: @success;
 }
 
+/* 电池告警使用警告色。 */
 #battery.warning {
   color: @warning;
 }
 
+/* 电池危险时使用紧急色并闪烁。 */
 #battery.critical {
   color: @urgent;
   animation: blink 1s linear infinite;
 }
 
+/* 危险状态闪烁动画。 */
 @keyframes blink {
   50% {
     opacity: 0.5;
   }
 }
 
+/* 音量静音时使用弱化颜色。 */
 #pulseaudio.muted {
   color: @muted;
 }
 
+/* 网络断开时使用紧急色。 */
 #network.disconnected {
   color: @urgent;
 }

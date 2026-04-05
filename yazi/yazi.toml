@@ -1,32 +1,54 @@
+# 管理器主面板宽度比例：左侧父目录、中间文件列表、右侧预览。
 [mgr]
 ratio = [1, 4, 3]
+# 排序方式：按自然顺序排列，数字会按数值大小比较。
 sort_by = "natural"
+# 排序时不区分大小写。
 sort_sensitive = false
+# 目录始终排在文件前面。
 sort_dir_first = true
+# 默认不显示隐藏文件。
 show_hidden = false
+# 显示符号链接标记。
 show_symlink = true
+# 文件列表右侧附加显示修改时间。
 linemode = "mtime"
+# 光标上下保留 8 行缓冲，滚动时不至于贴边。
 scrolloff = 8
+# 标题栏显示当前目录路径。
 title_format = "{cwd}"
 
+# 预览面板行为。
 [preview]
+# 文本预览时自动换行。
 wrap = "yes"
+# Tab 按 2 个空格宽度显示。
 tab_size = 2
+# 图片预览允许的最大宽度。
 max_width = 1800
+# 图片预览允许的最大高度。
 max_height = 1800
+# 图片切换后的延迟，避免频繁闪烁。
 image_delay = 25
+# 图片缩放过滤器使用 triangle，画质和速度比较均衡。
 image_filter = "triangle"
+# 图片预览压缩质量。
 image_quality = 75
 
+# 文件打开器定义。
 [opener]
+# 文本类文件默认用终端编辑器打开，并阻塞当前 Yazi 会话。
 edit = [
   { run = "$EDITOR %s", block = true, for = "unix" },
 ]
+# 其它文件默认交给桌面环境处理。
 open = [
   { run = "xdg-open %s", desc = "Open", orphan = true, for = "linux" },
 ]
 
+# 文件打开规则。
 [open]
+# 把常见文本/配置文件优先交给 edit 打开器。
 prepend_rules = [
   { mime = "text/*", use = "edit" },
   { url = "*.json", use = "edit" },
@@ -37,11 +59,13 @@ prepend_rules = [
   { url = "*.kdl", use = "edit" },
 ]
 
+# 在所有文件上追加 Git 状态抓取器，用于显示仓库状态。
 [[plugin.prepend_fetchers]]
 id = "git"
 url = "*"
 run = "git"
 
+# 在所有目录上也追加 Git 状态抓取器。
 [[plugin.prepend_fetchers]]
 id = "git"
 url = "*/"

@@ -1,21 +1,37 @@
-/* Rose Pine 配色方案 - 与 rofi/mako 统一 */
+/* Rose Pine 基础底色：最深层背景色。 */
 @define-color base #191724;
+/* 次级表面色：用于卡片或浅一层背景。 */
 @define-color surface #1f1d2e;
+/* 覆盖层颜色：常用于悬停或 tooltip 背景。 */
 @define-color overlay #26233a;
+/* 弱化文本色：用于不重要信息。 */
 @define-color muted #6e6a86;
+/* 次要说明文字色。 */
 @define-color subtle #908caa;
+/* 主文本颜色。 */
 @define-color text #e0def4;
+/* 危险/报错色。 */
 @define-color love #eb6f92;
+/* 警告色。 */
 @define-color gold #f6c177;
+/* 柔和暖色。 */
 @define-color rose #ebbcba;
+/* 成功/确认色。 */
 @define-color pine #31748f;
+/* 主题强调色。 */
 @define-color foam #9ccfd8;
+/* 额外点缀色。 */
 @define-color iris #c4a7e7;
 
-/* 主要颜色定义 */
+/* Waybar 模块统一背景色，带一点透明。 */
 @define-color background alpha(#1e1e2e, 0.85);
+/* Waybar 默认前景文字颜色。 */
 @define-color foreground #e0def4;
+/* 主要强调色，用于工作区和窗口标题。 */
 @define-color accent #9ccfd8;
+/* 紧急状态颜色，比如断网或电池危险。 */
 @define-color urgent #eb6f92;
+/* 警告状态颜色，比如低电量。 */
 @define-color warning #f6c177;
+/* 正常成功状态颜色，比如充电中。 */
 @define-color success #31748f;

@@ -1,59 +1,65 @@
-# Start configuration added by Zim Framework install {{{
+# Zim Framework 自动生成配置的开始标记。{{{
 #
-# This is not sourced during shell startup and is only used to configure zimfw.
-#
-
-#
-# Modules
+# 这个文件不会在 shell 启动时直接 source，只用于告诉 `zimfw` 该加载哪些模块。
 #
 
-# Sets sane Zsh built-in environment options.
+#
+# 模块列表
+#
+
+# 设置较合理的 Zsh 内建环境选项。
 zmodule environment
-# Provides handy git aliases and functions.
+
+# 提供常用的 git 别名和函数。
 zmodule git
-# Applies correct bindkeys for input events.
+
+# 修正常见输入事件的按键绑定。
 zmodule input
-# Sets a custom terminal title.
+
+# 设置自定义终端标题。
 zmodule termtitle
-# Utility aliases and functions. Adds colour to ls, grep and less.
+
+# 提供一些通用别名和函数，并给 `ls`、`grep`、`less` 增加颜色。
 zmodule utility
 
-# <-- Normally new modules should be added here. Check each module documentation
-# for any caveats.
+# 新模块通常加在这里；具体注意事项要看各模块文档。
 
 #
-# Prompt
+# 提示符模块
 #
 
-# Exposes how long the last command took to run to prompts.
+# 把上一条命令耗时暴露给提示符。
 zmodule duration-info
-# Exposes git repository status information to prompts.
+
+# 把当前 git 仓库状态暴露给提示符。
 zmodule git-info
-# A heavily reduced, ASCII-only version of the Spaceship and Starship prompts.
+
+# 一个精简过、只用 ASCII 的提示符主题。
 zmodule magicmace
 zmodule prompt-pwd
+
 #
-# Completion
+# 补全模块
 #
 
-# Additional completion definitions for Zsh.
+# 提供额外的 Zsh 补全定义。
 zmodule zsh-users/zsh-completions --fpath src
-# Enables and configures smart and extensive tab completion, must be sourced
-# after all modules that add completion definitions.
+
+# 启用并配置更完整的 Tab 补全；必须放在所有补全定义模块之后。
 zmodule completion
 
 #
-# Modules that must be initialized last
+# 必须最后初始化的模块
 #
 
-# Fish-like syntax highlighting for Zsh, must be sourced after completion.
+# 类似 fish 的语法高亮；必须在 completion 之后加载。
 zmodule zsh-users/zsh-syntax-highlighting
-# Fish-like history search for Zsh, must be sourced after
-# zsh-users/zsh-syntax-highlighting. Bind keyboard shortcuts in your ~/.zshrc:
+
+# 类似 fish 的历史记录搜索；必须在语法高亮之后加载。
+# 键位绑定请放到 `~/.zshrc`，说明见：
 # https://github.com/zsh-users/zsh-history-substring-search/blob/master/README.md#usage
 zmodule zsh-users/zsh-history-substring-search
-# Fish-like autosuggestions for Zsh. Add the following to your ~/.zshrc to boost
-# performance: ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-zmodule zsh-users/zsh-autosuggestions
-# }}} End configuration added by Zim Framework install
 
+# 类似 fish 的自动建议；想提升性能可在 `~/.zshrc` 里设置 `ZSH_AUTOSUGGEST_MANUAL_REBIND=1`。
+zmodule zsh-users/zsh-autosuggestions
+# }}} Zim Framework 自动生成配置的结束标记。
