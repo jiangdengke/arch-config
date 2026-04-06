@@ -8,7 +8,7 @@
 // https://yalter.github.io/niri/Configuration:-Input
 spawn-at-startup "waybar"
 spawn-at-startup "fcitx5"
-spawn-at-startup "bash" "/home/jdk/.config/wallpaper-random.sh"
+spawn-at-startup "bash" "/home/jdk/.config/swww-random.sh"
 
 input {
     keyboard {

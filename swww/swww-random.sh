@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# 基于 swww 随机切换壁纸的脚本（带过渡动画）。
-# 该脚本会在 Wayland 会话中寻找指定目录里的图片文件，随机挑选一张并通过 swww 显示。
+# 基于 swww / awww 随机切换壁纸的脚本（带过渡动画）。
+# 该脚本会在 Wayland 会话中寻找指定目录里的图片文件，随机挑选一张并通过可用后端显示。
 # 由于会被 niri 在启动时直接调用，需要具备自恢复能力：未找到会话、目录或图片时静默退出。
 set -euo pipefail
 
@@ -49,8 +49,22 @@ if [[ -z "${WAYLAND_DISPLAY:-}" ]]; then
   exit 0
 fi
 
-# 避免使用外部注入的错误 SWWW_SOCKET。
+# 自动探测可用壁纸后端，优先使用 swww，其次兼容 awww。
+if command -v swww >/dev/null 2>&1 && command -v swww-daemon >/dev/null 2>&1; then
+  wallpaper_client=(swww)
+  wallpaper_daemon=(swww-daemon)
+  wallpaper_daemon_name="swww-daemon"
+elif command -v awww >/dev/null 2>&1 && command -v awww-daemon >/dev/null 2>&1; then
+  wallpaper_client=(awww)
+  wallpaper_daemon=(awww-daemon)
+  wallpaper_daemon_name="awww-daemon"
+else
+  exit 0
+fi
+
+# 避免使用外部注入的错误 socket 环境变量。
 unset SWWW_SOCKET
+unset AWWW_SOCKET
 
 # 进入主循环：每次挑选壁纸后休眠 300 秒，再次扫描目录，确保新增/删除图片能被感知。
 while true; do
@@ -65,19 +79,19 @@ while true; do
   # 使用 Bash 内置 RANDOM 从数组中随机抽取一张图片。
   img="${files[$((RANDOM % ${#files[@]}))]}"
 
-  # 确保 swww-daemon 已启动（如果已在跑则忽略错误）。
-  pgrep -x swww-daemon >/dev/null 2>&1 || swww-daemon >/dev/null 2>&1 &
+  # 确保壁纸守护进程已启动（如果已在跑则忽略错误）。
+  pgrep -x "$wallpaper_daemon_name" >/dev/null 2>&1 || "${wallpaper_daemon[@]}" >/dev/null 2>&1 &
 
-  # 等待 swww-daemon 就绪，避免 socket 还未创建。
+  # 等待守护进程就绪，避免 socket 还未创建。
   for _ in {1..20}; do
-    if swww query >/dev/null 2>&1; then
+    if "${wallpaper_client[@]}" query >/dev/null 2>&1; then
       break
     fi
     sleep 0.1
   done
 
-  # 使用 swww 切换壁纸并启用淡入过渡。
-  if ! swww img "$img" --transition-type fade --transition-duration 1.0 >/dev/null 2>&1; then
+  # 使用当前后端切换壁纸并启用淡入过渡。
+  if ! "${wallpaper_client[@]}" img "$img" --transition-type fade --transition-duration 1.0 >/dev/null 2>&1; then
     sleep 5
     continue
   fi
