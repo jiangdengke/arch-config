@@ -18,8 +18,8 @@
   "modules-left": ["custom/l_end", "clock", "custom/r_end", "custom/l_end", "cpu", "memory", "custom/r_end", "custom/padd"],
   // 中间模块：工作区和当前窗口标题。
   "modules-center": ["custom/padd", "custom/l_end", "niri/workspaces", "niri/window", "custom/r_end", "custom/padd"],
-  // 右侧模块：托盘、网络、亮度、音量、电池。
-  "modules-right": ["custom/padd", "custom/l_end", "tray", "network", "backlight", "pulseaudio", "battery", "custom/r_end"],
+  // 右侧模块：通知、托盘、网络、亮度、音量、电池。
+  "modules-right": ["custom/padd", "custom/l_end", "custom/notifications", "tray", "network", "backlight", "pulseaudio", "battery", "custom/r_end"],
 
   // Niri 工作区模块设置。
   "niri/workspaces": {
@@ -54,6 +54,22 @@
     "spacing": 10,
     // 反向排列，让新图标从右侧开始进入。
     "reverse-direction": true
+  },
+
+  // Mako 通知状态模块。
+  "custom/notifications": {
+    // 调用本地脚本输出 JSON，供 Waybar 渲染图标与状态类名。
+    "exec": "~/.config/waybar/scripts/mako-status.sh",
+    // 脚本返回 JSON。
+    "return-type": "json",
+    // 每 2 秒轮询一次，保证通知数量能及时刷新。
+    "interval": 2,
+    // 接收手动信号刷新，点击切换勿扰时立即更新。
+    "signal": 8,
+    // 左键切换 mako 勿扰模式。
+    "on-click": "~/.local/bin/toggle-mako-dnd",
+    // 启用 tooltip，并优先使用脚本返回的状态文案。
+    "tooltip": true
   },
 
   // 背光模块设置。

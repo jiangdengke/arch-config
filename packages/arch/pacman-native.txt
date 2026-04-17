@@ -26,6 +26,7 @@ fcitx5-rime
 firefox
 ghostscript
 google-cloud-cli
+grim
 grub
 gtk4-layer-shell
 imagemagick
@@ -41,6 +42,7 @@ libreoffice-still-zh-cn
 linux
 linux-firmware
 localsend
+mako
 macchanger
 mesa-utils
 neovim
@@ -65,9 +67,11 @@ pipewire-alsa
 pipewire-pulse
 rofi
 sddm
+slurp
 sof-firmware
 stow
 swaybg
+swaylock
 timeshift
 tmux
 tree

@@ -8,6 +8,7 @@
 // https://yalter.github.io/niri/Configuration:-Input
 spawn-at-startup "waybar"
 spawn-at-startup "fcitx5"
+spawn-at-startup "mako"
 spawn-at-startup "bash" "/home/jdk/.config/swww-random.sh"
 
 input {
@@ -377,7 +378,7 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "~/.config/rofi/toggle-rofi.sh"; }
 
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "~/.local/bin/lock-screen"; }
 
     // 如果命令里需要变量、管道、多条命令等 shell 语法，请使用 spawn-sh。
     // 注意：整个命令要作为一个字符串传给 `sh -c`。
@@ -602,8 +603,9 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
+    // 截图：Print 为区域截图，Ctrl+Print 为当前屏幕截图，都会保存并复制到剪贴板。
+    Print { spawn "~/.local/bin/screenshot" "area"; }
+    Ctrl+Print { spawn "~/.local/bin/screenshot" "screen"; }
     Alt+Print { screenshot-window; }
 
     // 有些远程桌面或软件 KVM 会请求 niri 暂停处理这些快捷键，

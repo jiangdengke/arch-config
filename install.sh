@@ -52,6 +52,7 @@ link_file() {
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.config/fcitx5/conf"
 mkdir -p "$HOME/.local/share/fcitx5"
+mkdir -p "$HOME/.local/bin"
 
 # Zsh
 link_file "$repo_root/zsh/.zshrc" "$HOME/.zshrc"
@@ -60,11 +61,16 @@ link_file "$repo_root/zsh/.zimrc" "$HOME/.zimrc"
 
 # 桌面/应用配置
 link_file "$repo_root/kitty" "$HOME/.config/kitty"
+link_file "$repo_root/mako" "$HOME/.config/mako"
 link_file "$repo_root/niri" "$HOME/.config/niri"
 link_file "$repo_root/rofi" "$HOME/.config/rofi"
+link_file "$repo_root/swaylock" "$HOME/.config/swaylock"
 link_file "$repo_root/waybar" "$HOME/.config/waybar"
 link_file "$repo_root/yazi" "$HOME/.config/yazi"
 link_file "$repo_root/swww/swww-random.sh" "$HOME/.config/swww-random.sh"
+link_file "$repo_root/scripts/lock-screen.sh" "$HOME/.local/bin/lock-screen"
+link_file "$repo_root/scripts/screenshot.sh" "$HOME/.local/bin/screenshot"
+link_file "$repo_root/scripts/toggle-mako-dnd.sh" "$HOME/.local/bin/toggle-mako-dnd"
 
 # Git
 link_file "$repo_root/git/.gitconfig" "$HOME/.gitconfig"

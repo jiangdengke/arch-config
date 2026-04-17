@@ -9,10 +9,13 @@
 - `zsh`
 - `kitty`
 - `niri`
+- `mako`
 - `rofi`
+- `swaylock`
 - `waybar`
 - `yazi`
 - `swww`
+- `scripts`
 - `git`
 - `tmux`
 - `fcitx5`
@@ -22,9 +25,12 @@
 - `zsh/`：shell 配置
 - `kitty/`：终端配置
 - `niri/`：Wayland 合成器配置
+- `mako/`：通知守护进程配置
 - `rofi/`：启动器配置
+- `swaylock/`：锁屏配置
 - `waybar/`：状态栏配置
 - `yazi/`：Yazi 配置和本地插件
+- `scripts/`：本地辅助脚本，例如锁屏、截图、通知开关
 - `fcitx5/`：输入法配置和主题
 - `tmux/`：tmux 基础配置和本地覆盖配置
 - `git/`：Git 配置
@@ -42,6 +48,7 @@ cd ~/dotfiles
 
 脚本会先把已有文件备份成带时间戳的 `.bak.*`，再创建软链接到本仓库。
 目前会接管的主要目标包括：`~/.zshrc`、`~/.zprofile`、`~/.zimrc`、`~/.gitconfig`、`~/.tmux.conf`、`~/.tmux.conf.local`，以及对应的 `~/.config/*` 目录。
+还会接管 `~/.config/mako`、`~/.config/swaylock`，并把辅助脚本链接到 `~/.local/bin/lock-screen`、`~/.local/bin/screenshot`、`~/.local/bin/toggle-mako-dnd`。
 
 ## 在另一台 Arch 上恢复
 
@@ -62,6 +69,8 @@ xargs -r paru -S --needed -- < packages/arch/pacman-foreign.txt
 
 ./install.sh
 ```
+
+截图、锁屏、通知链路依赖的核心包也已经纳入清单：`mako`、`swaylock`、`grim`、`slurp`、`wl-clipboard`、`libnotify`。
 
 ## 软件清单
 

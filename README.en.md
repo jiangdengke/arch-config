@@ -9,10 +9,13 @@ This is my Arch Linux user-space configuration repository.
 - `zsh`
 - `kitty`
 - `niri`
+- `mako`
 - `rofi`
+- `swaylock`
 - `waybar`
 - `yazi`
 - `swww`
+- `scripts`
 - `git`
 - `tmux`
 - `fcitx5`
@@ -22,9 +25,12 @@ This is my Arch Linux user-space configuration repository.
 - `zsh/`: shell config
 - `kitty/`: terminal config
 - `niri/`: compositor config
+- `mako/`: notification daemon config
 - `rofi/`: launcher config
+- `swaylock/`: lock screen config
 - `waybar/`: bar config
 - `yazi/`: Yazi config and local plugins
+- `scripts/`: helper scripts such as lock-screen, screenshot, and notification toggles
 - `fcitx5/`: input method config and themes
 - `tmux/`: tmux base config and local overrides
 - `git/`: Git config
@@ -42,6 +48,7 @@ cd ~/dotfiles
 
 The script backs up existing targets with a timestamped `.bak.*` suffix, then creates symlinks into this repo.
 The main managed targets include `~/.zshrc`, `~/.zprofile`, `~/.zimrc`, `~/.gitconfig`, `~/.tmux.conf`, `~/.tmux.conf.local`, and the related `~/.config/*` directories.
+It also manages `~/.config/mako`, `~/.config/swaylock`, and links helper scripts into `~/.local/bin/lock-screen`, `~/.local/bin/screenshot`, and `~/.local/bin/toggle-mako-dnd`.
 
 ## Restore on another Arch machine
 
@@ -62,6 +69,8 @@ xargs -r paru -S --needed -- < packages/arch/pacman-foreign.txt
 
 ./install.sh
 ```
+
+The screenshot, lock-screen, and notification flow now depends on `mako`, `swaylock`, `grim`, `slurp`, `wl-clipboard`, and `libnotify`, and these are tracked in the package inventory.
 
 ## Software inventory
 

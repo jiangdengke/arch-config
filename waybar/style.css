@@ -123,6 +123,7 @@ tooltip.clock {
 #window,
 #cpu,
 #memory,
+#custom-notifications,
 #custom-l_end,
 #custom-r_end,
 #custom-sl_end,
@@ -200,6 +201,29 @@ tooltip.clock {
 /* 时钟加粗，让左侧视觉更稳定。 */
 #clock {
   font-weight: 600;
+}
+
+/* 通知模块稍微加粗，图标更稳。 */
+#custom-notifications {
+  font-weight: 600;
+}
+
+/* 没有未读通知或通知服务不可用时使用弱化色。 */
+#custom-notifications.none,
+#custom-notifications.missing,
+#custom-notifications.stopped {
+  color: @muted;
+}
+
+/* 有通知时使用强调色。 */
+#custom-notifications.notification {
+  color: @accent;
+}
+
+/* 勿扰状态统一使用警告色。 */
+#custom-notifications.dnd-none,
+#custom-notifications.dnd-notification {
+  color: @warning;
 }
 
 /* 电池充电中使用成功色。 */
