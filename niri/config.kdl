@@ -287,6 +287,35 @@ animations {
 
     // slowdown 用于整体放慢动画；小于 1 则相当于加速。
     // slowdown 3.0
+
+    // 窗口/列在工作区内移动时的动画。
+    // 这里把阻尼调低、刚度调低，让移动感更明显一点。
+    window-movement {
+        spring damping-ratio=0.8 stiffness=500 epsilon=0.0001
+    }
+
+    // 左右切换视图、把焦点滚到相邻列时的横向移动动画。
+    horizontal-view-movement {
+        spring damping-ratio=0.8 stiffness=500 epsilon=0.0001
+    }
+
+    // 窗口尺寸变化时的动画。
+    window-resize {
+        spring damping-ratio=0.8 stiffness=500 epsilon=0.0001
+    }
+}
+
+// Overview 配置。
+overview {
+    // 当模糊壁纸后端还没起来时，先用一个深色作为后备背景。
+    backdrop-color "#11111b"
+}
+
+// 把专门用于 Overview backdrop 的壁纸层放进 backdrop。
+// 这个 namespace 由 `swww-random.sh` 里单独启动的 awww/swww 实例提供。
+layer-rule {
+    match namespace="^(awww-daemon|swww-daemon)overview-backdrop$"
+    place-within-backdrop true
 }
 
 // window-rule 可按窗口单独调整行为。

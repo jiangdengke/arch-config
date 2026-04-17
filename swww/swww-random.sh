@@ -49,6 +49,12 @@ if [[ -z "${WAYLAND_DISPLAY:-}" ]]; then
   exit 0
 fi
 
+# Overview backdrop 使用的单独命名空间。
+overview_namespace="overview-backdrop"
+
+# Overview backdrop 模糊壁纸缓存目录。
+blur_cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/niri/overview-backdrop"
+
 # 自动探测可用壁纸后端，优先使用 swww，其次兼容 awww。
 if command -v swww >/dev/null 2>&1 && command -v swww-daemon >/dev/null 2>&1; then
   wallpaper_client=(swww)
@@ -66,6 +72,80 @@ fi
 unset SWWW_SOCKET
 unset AWWW_SOCKET
 
+# 检查指定命名空间的壁纸守护进程是否已经可响应。
+query_wallpaper() {
+  local namespace="${1:-}"
+
+  if [[ -n "$namespace" ]]; then
+    "${wallpaper_client[@]}" query --namespace "$namespace" >/dev/null 2>&1
+  else
+    "${wallpaper_client[@]}" query >/dev/null 2>&1
+  fi
+}
+
+# 启动指定命名空间的壁纸守护进程。
+start_wallpaper_daemon() {
+  local namespace="${1:-}"
+
+  if [[ -n "$namespace" ]]; then
+    "${wallpaper_daemon[@]}" --namespace "$namespace" >/dev/null 2>&1 &
+  else
+    "${wallpaper_daemon[@]}" >/dev/null 2>&1 &
+  fi
+}
+
+# 确保指定命名空间的壁纸守护进程已启动并可用。
+ensure_wallpaper_daemon() {
+  local namespace="${1:-}"
+
+  if ! query_wallpaper "$namespace"; then
+    start_wallpaper_daemon "$namespace"
+  fi
+
+  for _ in {1..20}; do
+    if query_wallpaper "$namespace"; then
+      return 0
+    fi
+    sleep 0.1
+  done
+
+  return 1
+}
+
+# 为指定图片生成一张模糊版，供 Overview backdrop 使用。
+generate_blurred_wallpaper() {
+  local img="$1"
+  local stamp key out tmp
+
+  command -v magick >/dev/null 2>&1 || return 1
+
+  mkdir -p "$blur_cache_dir"
+
+  stamp="$(stat -c '%Y:%s' "$img" 2>/dev/null || printf '0:0')"
+  key="$(printf '%s|%s\n' "$img" "$stamp" | sha1sum | awk '{print $1}')"
+  out="$blur_cache_dir/${key}.png"
+
+  if [[ -f "$out" ]]; then
+    printf '%s\n' "$out"
+    return 0
+  fi
+
+  tmp="${out}.tmp.$$"
+
+  if magick "$img" \
+    -resize 50% \
+    -blur 0x18 \
+    -resize 200% \
+    "$tmp" >/dev/null 2>&1; then
+    mv "$tmp" "$out"
+    printf '%s\n' "$out"
+    return 0
+  fi
+
+  rm -f "$tmp"
+  return 1
+}
+
 # 进入主循环：每次挑选壁纸后休眠 300 秒，再次扫描目录，确保新增/删除图片能被感知。
 while true; do
   # 搜索壁纸目录下的常见图片格式，mapfile 读入数组并排序以获得稳定选择序列。
@@ -79,21 +159,23 @@ while true; do
   # 使用 Bash 内置 RANDOM 从数组中随机抽取一张图片。
   img="${files[$((RANDOM % ${#files[@]}))]}"
 
-  # 确保壁纸守护进程已启动（如果已在跑则忽略错误）。
-  pgrep -x "$wallpaper_daemon_name" >/dev/null 2>&1 || "${wallpaper_daemon[@]}" >/dev/null 2>&1 &
-
-  # 等待守护进程就绪，避免 socket 还未创建。
-  for _ in {1..20}; do
-    if "${wallpaper_client[@]}" query >/dev/null 2>&1; then
-      break
-    fi
-    sleep 0.1
-  done
+  # 确保主壁纸守护进程已启动并就绪。
+  if ! ensure_wallpaper_daemon; then
+    sleep 5
+    continue
+  fi
 
   # 使用当前后端切换壁纸并启用淡入过渡。
   if ! "${wallpaper_client[@]}" img "$img" --transition-type fade --transition-duration 1.0 >/dev/null 2>&1; then
     sleep 5
     continue
+  fi
+
+  # 为 Overview 生成模糊版 backdrop。
+  if blurred_img="$(generate_blurred_wallpaper "$img")"; then
+    if ensure_wallpaper_daemon "$overview_namespace"; then
+      "${wallpaper_client[@]}" img "$blurred_img" --namespace "$overview_namespace" --transition-type fade --transition-duration 1.0 >/dev/null 2>&1 || true
+    fi
   fi
 
   # 每五分钟刷新一次，若脚本被外部终止则会提前结束循环。
