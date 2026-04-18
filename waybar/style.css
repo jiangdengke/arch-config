@@ -145,8 +145,7 @@ tooltip.clock {
 }
 
 /* 工作区模块自身不要额外内边距。 */
-#workspaces,
-#tray {
+#workspaces {
   padding: 0px;
 }
 
