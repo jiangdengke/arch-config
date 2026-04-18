@@ -387,7 +387,7 @@ tmux_conf_urlscan_options="--compact --dedupe"
 #set -g history-limit 10000
 
 # 默认启用鼠标模式。
-#set -g mouse on
+set -g mouse on
 
 # 强制使用 Vi 模式。
 # 实际上更推荐设置 `VISUAL` 或 `EDITOR` 环境变量，见 tmux 手册。
