@@ -113,7 +113,6 @@ tooltip.clock {
 #battery,
 #pulseaudio,
 #bluetooth,
-#custom-bluetooth,
 #network,
 #workspaces,
 #tray,
@@ -251,6 +250,16 @@ tooltip.clock {
 /* 音量静音时使用弱化颜色。 */
 #pulseaudio.muted {
   color: @muted;
+}
+
+/* 蓝牙关闭时使用弱化颜色。 */
+#bluetooth.disabled {
+  color: @muted;
+}
+
+/* 蓝牙已连接设备时使用成功色。 */
+#bluetooth.connected {
+  color: @success;
 }
 
 /* 网络断开时使用紧急色。 */

@@ -18,8 +18,8 @@
   "modules-left": ["custom/l_end", "clock", "custom/r_end", "custom/l_end", "cpu", "memory", "custom/r_end", "custom/padd"],
   // 中间模块：工作区和当前窗口标题。
   "modules-center": ["custom/padd", "custom/l_end", "niri/workspaces", "niri/window", "custom/r_end", "custom/padd"],
-  // 右侧模块：通知、托盘、网络、亮度、音量、电池。
-  "modules-right": ["custom/padd", "custom/l_end", "custom/notifications", "tray", "network", "backlight", "pulseaudio", "battery", "custom/r_end"],
+  // 右侧模块：通知、托盘、蓝牙、网络、亮度、音量、电池。
+  "modules-right": ["custom/padd", "custom/l_end", "custom/notifications", "tray", "bluetooth", "network", "backlight", "pulseaudio", "battery", "custom/r_end"],
 
   // Niri 工作区模块设置。
   "niri/workspaces": {
@@ -70,6 +70,23 @@
     "on-click": "~/.local/bin/toggle-mako-dnd",
     // 启用 tooltip，并优先使用脚本返回的状态文案。
     "tooltip": true
+  },
+
+  // 蓝牙状态模块。
+  // 直接内联到主配置里，确保 Waybar 一定能读到点击事件和格式设置。
+  "bluetooth": {
+    "format": "󰂯",
+    "rotate": 0,
+    "format-disabled": "󰂲",
+    "format-connected": " {num_connections}",
+    "format-connected-battery": "{icon} {num_connections}",
+    "format-icons": ["󰥇", "󰤾", "󰤿", "󰥀", "󰥁", "󰥂", "󰥃", "󰥄", "󰥅", "󰥆", "󰥈"],
+    "on-click": "bash ~/.config/waybar/scripts/bluetooth-control.sh toggle",
+    "on-click-right": "bash ~/.config/waybar/scripts/bluetooth-control.sh manager",
+    "tooltip-format": "{controller_alias}\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{icon} {device_battery_percentage}%"
   },
 
   // 背光模块设置。
@@ -148,14 +165,12 @@
 
   // 音量模块设置。
   "pulseaudio": {
-    // 默认显示图标和音量百分比。
-    "format": "{icon} {volume}%",
+    // 采用 HyDE 的音量展示方式：只显示设备图标和音量值。
+    "format": "{icon} {volume}",
     // 静音时的显示文本。
-    "format-muted": "  muted",
-    // 蓝牙设备时追加蓝牙图标。
-    "format-bluetooth": "{icon} {volume}%",
-    // tooltip 显示设备描述和音量。
-    "tooltip-format": "{desc} — {volume}%",
+    "format-muted": "婢",
+    // tooltip 显示设备描述和音量百分比。
+    "tooltip-format": "{icon} {desc} // {volume}%",
     // Waybar 内部滚动步长。
     "scroll-step": 5,
     // 左键打开 pavucontrol 的输出设备页。
@@ -166,8 +181,16 @@
     "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
     // 向下滚轮减小音量。
     "on-scroll-down": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-",
-    // 根据音量区间显示不同图标。
-    "format-icons": { "default": ["", "", ""] }
+    // 根据设备类型与音量区间显示不同图标。
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    }
   },
 
   // 内存模块设置。
