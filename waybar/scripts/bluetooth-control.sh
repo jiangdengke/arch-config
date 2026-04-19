@@ -19,7 +19,8 @@ powered() {
 
 open_manager() {
   if command -v blueman-manager >/dev/null 2>&1; then
-    exec bash "$HOME/.config/blueman-manager.sh"
+    export GTK_THEME=Orchis-Dark
+    exec blueman-manager
   fi
 
   notify "Bluetooth" "未安装 blueman-manager"
