@@ -4,11 +4,70 @@
 # 由于会被 niri 在启动时直接调用，需要具备自恢复能力：未找到会话、目录或图片时静默退出。
 set -euo pipefail
 
-# 目标壁纸目录：优先使用第一个参数，否则使用默认目录。
-dir="${1:-$HOME/Pictures/images/images}"
+# 支持的图片扩展名过滤条件。
+image_match=(
+  \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' -o -iname '*.bmp' \)
+)
 
-# 若目录不存在则直接退出，避免报错打断登录流程。
-if [[ ! -d "$dir" ]]; then
+# 兼容单文件或目录输入，便于新机器和旧目录结构都能工作。
+has_supported_images() {
+  local target="$1"
+
+  if [[ -f "$target" ]]; then
+    case "${target,,}" in
+      *.png|*.jpg|*.jpeg|*.webp|*.bmp) return 0 ;;
+      *) return 1 ;;
+    esac
+  fi
+
+  [[ -d "$target" ]] || return 1
+  find "$target" -type f "${image_match[@]}" -print -quit | grep -q .
+}
+
+collect_wallpaper_files() {
+  local target="$1"
+
+  if [[ -f "$target" ]]; then
+    printf '%s\n' "$target"
+    return 0
+  fi
+
+  find "$target" -type f "${image_match[@]}"
+}
+
+resolve_wallpaper_source() {
+  local candidates=()
+  local target
+
+  [[ -n "${1:-}" ]] && candidates+=("$1")
+  [[ -n "${WALLPAPER_DIR:-}" ]] && candidates+=("${WALLPAPER_DIR}")
+
+  candidates+=(
+    "$HOME/Pictures/wallpapers"
+    "$HOME/Pictures/Wallpapers"
+    "$HOME/Pictures/images/images"
+    "$HOME/Pictures/images"
+    "$HOME/Pictures"
+    "$HOME/.config/wallpapers"
+    "/usr/share/backgrounds"
+  )
+
+  for target in "${candidates[@]}"; do
+    [[ -e "$target" ]] || continue
+    if has_supported_images "$target"; then
+      printf '%s\n' "$target"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+# 优先使用参数或环境变量覆盖，否则自动探测常见目录。
+wallpaper_source="$(resolve_wallpaper_source "${1:-}" || true)"
+
+# 若没有任何可用壁纸源则静默退出，避免报错打断登录流程。
+if [[ -z "$wallpaper_source" ]]; then
   exit 0
 fi
 
@@ -148,8 +207,8 @@ generate_blurred_wallpaper() {
 
 # 进入主循环：每次挑选壁纸后休眠 300 秒，再次扫描目录，确保新增/删除图片能被感知。
 while true; do
-  # 搜索壁纸目录下的常见图片格式，mapfile 读入数组并排序以获得稳定选择序列。
-  mapfile -t files < <(find "$dir" -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' -o -iname '*.bmp' \) | sort)
+  # 每轮重新扫描壁纸源，保证新增或删除图片能被感知。
+  mapfile -t files < <(collect_wallpaper_files "$wallpaper_source" | sort)
 
   # 当目录里没有符合条件的图片时，不做任何操作提前返回。
   if [[ ${#files[@]} -eq 0 ]]; then

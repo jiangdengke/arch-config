@@ -50,9 +50,11 @@ link_file() {
 
 # 基础目录
 mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.config/git"
 mkdir -p "$HOME/.config/fcitx5/conf"
 mkdir -p "$HOME/.local/share/fcitx5"
 mkdir -p "$HOME/.local/bin"
+mkdir -p "$HOME/Pictures/images"
 
 # Zsh
 link_file "$repo_root/zsh/.zshrc" "$HOME/.zshrc"
@@ -62,6 +64,7 @@ link_file "$repo_root/zsh/.zimrc" "$HOME/.zimrc"
 # 桌面/应用配置
 link_file "$repo_root/kitty" "$HOME/.config/kitty"
 link_file "$repo_root/mako" "$HOME/.config/mako"
+link_file "$repo_root/hypr" "$HOME/.config/hypr"
 link_file "$repo_root/niri" "$HOME/.config/niri"
 link_file "$repo_root/rofi" "$HOME/.config/rofi"
 link_file "$repo_root/swaylock" "$HOME/.config/swaylock"

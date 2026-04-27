@@ -14,6 +14,9 @@ config_path="$HOME/.config/swaylock/config"
 # Overview 模糊壁纸缓存目录。
 blur_cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/niri/overview-backdrop"
 
+# 锁屏临时背景目录。
+lock_cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/lock-screen"
+
 # 从缓存目录里选出最近生成的一张模糊壁纸。
 latest_blurred_image() {
   # 缓存目录不存在时直接返回失败。
@@ -26,7 +29,54 @@ latest_blurred_image() {
     | cut -d' ' -f2-
 }
 
-# 有模糊壁纸时直接作为锁屏背景，否则退回 swaylock 配置里的纯色背景。
+# 直接抓取当前桌面截图，并生成一张更适合锁屏的模糊背景。
+capture_blurred_screenshot() {
+  local raw_image lock_image
+
+  command -v grim >/dev/null 2>&1 || return 1
+  command -v magick >/dev/null 2>&1 || return 1
+
+  mkdir -p "$lock_cache_dir"
+
+  raw_image="$lock_cache_dir/raw-${PPID}-$$.png"
+  lock_image="$lock_cache_dir/lock-${PPID}-$$.png"
+
+  grim -t png "$raw_image" >/dev/null 2>&1 || {
+    rm -f "$raw_image" "$lock_image"
+    return 1
+  }
+
+  if magick "$raw_image" \
+    -resize 50% \
+    -blur 0x16 \
+    -resize 200% \
+    -fill '#11111bcc' \
+    -colorize 35 \
+    "$lock_image" >/dev/null 2>&1; then
+    rm -f "$raw_image"
+    printf '%s\n' "$lock_image"
+    return 0
+  fi
+
+  rm -f "$raw_image" "$lock_image"
+  return 1
+}
+
+run_swaylock_with_image() {
+  local image="$1"
+
+  trap 'rm -f "$image"' EXIT
+  swaylock -C "$config_path" -i "$image"
+  trap - EXIT
+  rm -f "$image"
+}
+
+# 优先使用当前桌面的模糊截图，失败时再退回到壁纸缓存。
+if lock_image="$(capture_blurred_screenshot)" && [[ -n "$lock_image" ]]; then
+  run_swaylock_with_image "$lock_image"
+  exit 0
+fi
+
 if blurred_image="$(latest_blurred_image)" && [[ -n "$blurred_image" ]]; then
   exec swaylock -C "$config_path" -i "$blurred_image"
 fi

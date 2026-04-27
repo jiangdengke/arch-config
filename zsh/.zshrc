@@ -117,12 +117,14 @@ if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
 fi
 
 # 如果缺少 `init.zsh` 或 `.zimrc` 更新过，就重新生成初始化文件并补齐缺失模块。
-if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
+if [[ -e ${ZIM_HOME}/zimfw.zsh && ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
   source ${ZIM_HOME}/zimfw.zsh init
 fi
 
-# 加载 Zim 生成的初始化脚本。
-source ${ZIM_HOME}/init.zsh
+# 只有初始化脚本生成成功时才加载，避免新机器首次启动时直接报错。
+if [[ -r ${ZIM_HOME}/init.zsh ]]; then
+  source ${ZIM_HOME}/init.zsh
+fi
 
 # }}} Zim Framework 自动生成配置的结束标记。
 
@@ -168,3 +170,4 @@ proxytest() {
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi
+export PATH="$HOME/.local/bin:$PATH"

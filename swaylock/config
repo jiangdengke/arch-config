@@ -1,55 +1,59 @@
 # Swaylock 基础行为。
 ignore-empty-password
-show-failed-attempts
 show-keyboard-layout
 
 # 时间与日期显示。
 clock
 font=MesloLGL Nerd Font
+font-size=34
 timestr=%H:%M
-datestr=%Y-%m-%d %A
+datestr=%Y年%m月%d日 %A
 
 # 背景图片使用填充模式，避免留黑边。
 scaling=fill
 
-# 指示器尺寸。
-indicator-radius=110
-indicator-thickness=10
+# 指示器尺寸与位置。
+indicator-radius=22
+indicator-thickness=3
+indicator-y-position=290
 
 # 全局背景与分隔线颜色。
-color=11111bee
+color=11111be6
 separator-color=00000000
 line-color=00000000
 
 # 默认状态配色。
-inside-color=1f1d2ecc
-ring-color=6e6a86ff
+inside-color=19172422
+ring-color=9ccfd8bb
 text-color=e0def4ff
-key-hl-color=9ccfd8ff
+layout-bg-color=1f1d2ee6
+layout-border-color=00000000
+layout-text-color=e0def4ff
+key-hl-color=c4a7e7ff
 bs-hl-color=f6c177ff
 
 # 清空输入时的配色。
-inside-clear-color=31748fcc
-ring-clear-color=9ccfd8ff
+inside-clear-color=1f1d2e33
+ring-clear-color=c4a7e7cc
 text-clear-color=e0def4ff
 line-clear-color=00000000
 
 # 验证密码时的配色。
-inside-ver-color=31748fcc
-ring-ver-color=9ccfd8ff
+inside-ver-color=1f1d2e33
+ring-ver-color=9ccfd8dd
 text-ver-color=e0def4ff
 line-ver-color=00000000
 
 # 密码错误时的配色。
-inside-wrong-color=eb6f92cc
+inside-wrong-color=4b263244
 ring-wrong-color=eb6f92ff
 text-wrong-color=e0def4ff
 line-wrong-color=00000000
 
 # 大写锁定时的配色。
-inside-caps-lock-color=f6c177cc
+inside-caps-lock-color=3c312744
 ring-caps-lock-color=f6c177ff
-text-caps-lock-color=11111bff
+text-caps-lock-color=e0def4ff
 line-caps-lock-color=00000000
 caps-lock-bs-hl-color=ebbcbaff
-caps-lock-key-hl-color=11111bff
+caps-lock-key-hl-color=f6c177ff

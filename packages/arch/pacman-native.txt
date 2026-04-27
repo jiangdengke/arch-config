@@ -28,6 +28,7 @@ ghostscript
 google-cloud-cli
 grim
 grub
+hyprlock
 gtk4-layer-shell
 imagemagick
 img2pdf

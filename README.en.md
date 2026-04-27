@@ -8,6 +8,7 @@ This is my Arch Linux user-space configuration repository.
 
 - `zsh`
 - `kitty`
+- `hyprlock`
 - `niri`
 - `mako`
 - `rofi`
@@ -24,6 +25,7 @@ This is my Arch Linux user-space configuration repository.
 
 - `zsh/`: shell config
 - `kitty/`: terminal config
+- `hypr/`: Hyprlock config and launcher
 - `niri/`: compositor config
 - `mako/`: notification daemon config
 - `rofi/`: launcher config
@@ -34,7 +36,7 @@ This is my Arch Linux user-space configuration repository.
 - `fcitx5/`: input method config and themes
 - `tmux/`: tmux base config and local overrides
 - `git/`: Git config
-- `swww/`: wallpaper helper script
+- `swww/`: wallpaper helper script compatible with `swww` and `awww`
 - `packages/arch/`: software inventory snapshots from the current machine
 
 Note: `nvim` is not backed up in this repo because I use LazyVim directly.
@@ -42,7 +44,7 @@ Note: `nvim` is not backed up in this repo because I use LazyVim directly.
 ## Install on this machine
 
 ```bash
-cd ~/dotfiles
+cd ~/arch-config
 ./install.sh
 ```
 
@@ -52,15 +54,16 @@ It also manages `~/.config/mako`, `~/.config/swaylock`, and links helper scripts
 
 ## Restore on another Arch machine
 
-1. Clone this repo to `~/dotfiles`
+1. Clone this repo to `~/arch-config`
 2. Install packages from `packages/arch/` first
 3. Run `./install.sh`
+4. If you want the login shell to be `zsh` as well, run `chsh -s /usr/bin/zsh`
 
 Example:
 
 ```bash
-git clone git@github.com:jiangdengke/arch-config.git ~/dotfiles
-cd ~/dotfiles
+git clone git@github.com:jiangdengke/arch-config.git ~/arch-config
+cd ~/arch-config
 
 xargs -r sudo pacman -S --needed -- < packages/arch/pacman-native.txt
 
@@ -68,9 +71,15 @@ xargs -r sudo pacman -S --needed -- < packages/arch/pacman-native.txt
 xargs -r paru -S --needed -- < packages/arch/pacman-foreign.txt
 
 ./install.sh
+
+# If you also want the account login shell to default to zsh
+chsh -s /usr/bin/zsh
 ```
 
-The screenshot, lock-screen, and notification flow now depends on `mako`, `swaylock`, `grim`, `slurp`, `wl-clipboard`, and `libnotify`, and these are tracked in the package inventory.
+The screenshot, lock-screen, and notification flow now depends on `mako`, `hyprlock`, `swaylock`, `grim`, `slurp`, `wl-clipboard`, and `libnotify`, and these are tracked in the package inventory.
+The default `Super+Alt+L` lock-screen binding now launches Hyprlock; the repo still keeps the `swaylock` config and legacy script as a fallback path.
+The wallpaper helper now prefers `~/Pictures/images`, while still scanning `~/Pictures/images/images`, `~/Pictures/wallpapers`, `~/Pictures/Wallpapers`, `~/Pictures`, and `/usr/share/backgrounds`.
+`install.sh` also creates `~/Pictures/images` so a fresh machine has a conventional drop-in wallpaper directory.
 
 ## Software inventory
 
@@ -93,3 +102,11 @@ Use:
 ```
 
 `zsh/.zshrc` sources it when present.
+
+For machine-local Git overrides, use:
+
+```bash
+~/.config/git/config.local
+```
+
+This is a good place for per-machine proxy settings that should not live in the repo copy of `.gitconfig`.

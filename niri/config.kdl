@@ -9,7 +9,7 @@
 spawn-at-startup "waybar"
 spawn-at-startup "fcitx5"
 spawn-at-startup "mako"
-spawn-at-startup "bash" "/home/jdk/.config/swww-random.sh"
+spawn-at-startup "bash" "/home/jdk/.config/swww-random.sh" "/home/jdk/Pictures/images"
 
 input {
     keyboard {
@@ -155,10 +155,9 @@ layout {
     // 焦点环样式。
     focus-ring {
         // 取消注释后可关闭焦点环。
-        off
 
         // 焦点环向外延伸的逻辑像素宽度。
-        width 4
+        width 3
 
         // 颜色可写成多种格式：
         // - CSS 命名颜色，例如 "red"
@@ -166,11 +165,11 @@ layout {
         // - 类 CSS 表达，例如 rgb()、rgba()、hsl() 等
 
         // 活动显示器上的焦点环颜色。
-        active-color "#7fc8ff"
+        active-color "#6e6a86"
 
         // 非活动显示器上的焦点环颜色。
         // 只有当焦点窗口跨显示器可见时才会看到这个颜色。
-        inactive-color "#505050"
+        inactive-color "#19172422"
 
         // 也可以用渐变。渐变优先级高于纯色。
         // 写法与 CSS 的 linear-gradient(angle, from, to) 类似。
@@ -178,12 +177,12 @@ layout {
         // 若要配渐变，直接使用任意 CSS linear-gradient 生成器即可。
         // 也支持指定不同插值色彩空间，详见官方文档。
         //
-        // active-gradient from="#80c8ff" to="#c7ff7f" angle=45
+        active-gradient from="#9ccfd8" to="#c4a7e7" angle=45
 
         // 也可以让渐变相对于整个工作区视图，而不是相对于单个窗口。
         // 此时可设置 relative-to="workspace-view"。
         //
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        inactive-gradient from="#19172422" to="#26233a22" angle=45
     }
 
     // 常驻边框样式。和焦点环类似，但始终显示。
@@ -364,6 +363,12 @@ window-rule {
     // block-out-from "screencast"
 }
 
+// 强制把焦点环和边框画在窗口外围，而不是作为窗口后的整块背景。
+// 这样聚焦时只会看到外圈，不会把半透明窗口内部也一并染色。
+window-rule {
+    draw-border-with-background false
+}
+
 // 示例：给所有窗口启用圆角。
 // （同样默认不生效）
 /-window-rule {
@@ -388,7 +393,7 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "~/.config/rofi/toggle-rofi.sh"; }
 
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "~/.local/bin/lock-screen"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "~/.config/hypr/hyprlock-launch.sh"; }
 
     // 如果命令里需要变量、管道、多条命令等 shell 语法，请使用 spawn-sh。
     // 注意：整个命令要作为一个字符串传给 `sh -c`。
@@ -613,8 +618,9 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    // 截图：Print 为区域截图，Ctrl+Print 为当前屏幕截图，都会保存并复制到剪贴板。
+    // 截图：Print 和 Ctrl+1 都是区域截图，Ctrl+Print 为当前屏幕截图。
     Print { spawn "~/.local/bin/screenshot" "area"; }
+    Ctrl+1 { spawn "~/.local/bin/screenshot" "area"; }
     Ctrl+Print { spawn "~/.local/bin/screenshot" "screen"; }
     Alt+Print { screenshot-window; }
 

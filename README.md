@@ -8,6 +8,7 @@
 
 - `zsh`
 - `kitty`
+- `hyprlock`
 - `niri`
 - `mako`
 - `rofi`
@@ -24,6 +25,7 @@
 
 - `zsh/`：shell 配置
 - `kitty/`：终端配置
+- `hypr/`：Hyprlock 锁屏配置和启动脚本
 - `niri/`：Wayland 合成器配置
 - `mako/`：通知守护进程配置
 - `rofi/`：启动器配置
@@ -34,7 +36,7 @@
 - `fcitx5/`：输入法配置和主题
 - `tmux/`：tmux 基础配置和本地覆盖配置
 - `git/`：Git 配置
-- `swww/`：壁纸脚本
+- `swww/`：兼容 `swww` / `awww` 的壁纸脚本
 - `packages/arch/`：当前机器的软件清单快照
 
 说明：`nvim` 不在这个仓库里备份，因为我直接使用 LazyVim。
@@ -42,7 +44,7 @@
 ## 本机安装
 
 ```bash
-cd ~/dotfiles
+cd ~/arch-config
 ./install.sh
 ```
 
@@ -52,15 +54,16 @@ cd ~/dotfiles
 
 ## 在另一台 Arch 上恢复
 
-1. 把仓库克隆到 `~/dotfiles`
+1. 把仓库克隆到 `~/arch-config`
 2. 先按 `packages/arch/` 里的清单安装软件
 3. 再执行 `./install.sh`
+4. 如果希望登录 shell 也是 `zsh`，再执行 `chsh -s /usr/bin/zsh`
 
 示例：
 
 ```bash
-git clone git@github.com:jiangdengke/arch-config.git ~/dotfiles
-cd ~/dotfiles
+git clone git@github.com:jiangdengke/arch-config.git ~/arch-config
+cd ~/arch-config
 
 xargs -r sudo pacman -S --needed -- < packages/arch/pacman-native.txt
 
@@ -68,9 +71,15 @@ xargs -r sudo pacman -S --needed -- < packages/arch/pacman-native.txt
 xargs -r paru -S --needed -- < packages/arch/pacman-foreign.txt
 
 ./install.sh
+
+# 如果想把账户默认 shell 也切成 zsh
+chsh -s /usr/bin/zsh
 ```
 
-截图、锁屏、通知链路依赖的核心包也已经纳入清单：`mako`、`swaylock`、`grim`、`slurp`、`wl-clipboard`、`libnotify`。
+截图、锁屏、通知链路依赖的核心包也已经纳入清单：`mako`、`hyprlock`、`swaylock`、`grim`、`slurp`、`wl-clipboard`、`libnotify`。
+默认锁屏快捷键 `Super+Alt+L` 现在会启动 Hyprlock；仓库仍保留 `swaylock` 配置和旧脚本作为回退方案。
+壁纸脚本会优先扫描 `~/Pictures/images`，并继续兼容 `~/Pictures/images/images`、`~/Pictures/wallpapers`、`~/Pictures/Wallpapers`、`~/Pictures` 和 `/usr/share/backgrounds`。
+`install.sh` 会顺手创建 `~/Pictures/images`，新机器把图片放进去即可。
 
 ## 软件清单
 
@@ -93,3 +102,11 @@ xargs -r paru -S --needed -- < packages/arch/pacman-foreign.txt
 ```
 
 `zsh/.zshrc` 会在这个文件存在时自动加载它。
+
+Git 的本机私有覆盖可放到：
+
+```bash
+~/.config/git/config.local
+```
+
+例如本机代理配置就适合放这里，不要直接写进仓库里的 `.gitconfig`。
