@@ -389,9 +389,8 @@ window-rule {
     draw-border-with-background false
 }
 
-// 示例：给所有窗口启用圆角。
-// （同样默认不生效）
-/-window-rule {
+// 给所有窗口启用圆角。
+window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
