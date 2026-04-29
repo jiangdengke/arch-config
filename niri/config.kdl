@@ -11,6 +11,12 @@ spawn-at-startup "fcitx5"
 spawn-at-startup "mako"
 spawn-at-startup "bash" "/home/jdk/.config/swww-random.sh" "/home/jdk/Pictures/images"
 
+// 固定声明前三个命名工作区，确保 "3" 真正处在第三个位置。
+// 这样 QQ / 微信打开到 "3" 时，不会把第一个工作区直接变成 "3"。
+workspace "1"
+workspace "2"
+workspace "3"
+
 input {
     keyboard {
         xkb {
@@ -350,6 +356,20 @@ window-rule {
     clip-to-geometry true
 }
 
+// QQ 固定打开到命名工作区 "3"。
+// 本机桌面文件里 StartupWMClass=QQ。
+window-rule {
+    match app-id=r#"^(QQ|qq)$"#
+    open-on-workspace "3"
+}
+
+// 微信固定打开到命名工作区 "3"。
+// 本机桌面文件里 StartupWMClass=wechat。
+window-rule {
+    match app-id=r#"^(wechat|WeChat|com\.qq\.weixin)$"#
+    open-on-workspace "3"
+}
+
 // 示例：把密码管理器从截图里打码。
 // （这一整段因为前面有 `/-`，所以默认不生效）
 /-window-rule {
@@ -392,6 +412,7 @@ binds {
     // 启动应用的常用示例：终端、启动器、锁屏。
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "~/.config/rofi/toggle-rofi.sh"; }
+    Super+F12 hotkey-overlay-title="Start Magnifier: wooz" { spawn "/home/jdk/.local/bin/wooz" "--zoom-in" "25%" "--mouse-track"; }
 
     Super+Alt+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "~/.config/hypr/hyprlock-launch.sh"; }
 
@@ -533,18 +554,18 @@ binds {
     //
     // 例如当前有 2 个工作区 + 1 个空工作区，那么索引 3、4、5...
     // 都会指向第 3 个工作区。
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
+    Mod+1 { focus-workspace "1"; }
+    Mod+2 { focus-workspace "2"; }
+    Mod+3 { focus-workspace "3"; }
     Mod+4 { focus-workspace 4; }
     Mod+5 { focus-workspace 5; }
     Mod+6 { focus-workspace 6; }
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-    Mod+Ctrl+1 { move-column-to-workspace 1; }
-    Mod+Ctrl+2 { move-column-to-workspace 2; }
-    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+1 { move-column-to-workspace "1"; }
+    Mod+Ctrl+2 { move-column-to-workspace "2"; }
+    Mod+Ctrl+3 { move-column-to-workspace "3"; }
     Mod+Ctrl+4 { move-column-to-workspace 4; }
     Mod+Ctrl+5 { move-column-to-workspace 5; }
     Mod+Ctrl+6 { move-column-to-workspace 6; }

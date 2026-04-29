@@ -128,8 +128,8 @@ fi
 
 # }}} Zim Framework 自动生成配置的结束标记。
 
-# 把 Flutter SDK 加进 PATH。
-export PATH="$HOME/dev/flutter/bin:$PATH"
+# 把用户本地工具和 Flutter SDK 加进 PATH。
+export PATH="$HOME/.local/bin:$HOME/dev/flutter/bin:$PATH"
 
 
 # ===== Clash / flclash 终端代理（HTTP）=====
