@@ -16,6 +16,30 @@ on = [ "p" ]
 run = "plugin smart-paste"
 desc = "Paste into hovered directory or CWD"
 
+# 按 Y 复制选中项（或当前悬停项）的绝对路径文本到系统剪贴板。
+[[mgr.prepend_keymap]]
+on = [ "Y" ]
+for = "linux"
+run = 'shell -- eval "set -- %s"; [ "$#" -gt 0 ] || eval "set -- %h"; printf "%s\n" "$@" | wl-copy'
+desc = "Copy selected paths to system clipboard"
+
+# 按 fy 时，既执行 Yazi 内部 yank，也把文件列表写入系统剪贴板。
+# 这里使用标准的 text/uri-list；支持它的桌面应用可以直接粘贴文件。
+[[mgr.prepend_keymap]]
+on = [ "f", "y" ]
+for = "linux"
+run = [
+  'shell -- eval "set -- %s"; [ "$#" -gt 0 ] || eval "set -- %h"; for path in "$@"; do printf "file://%s\n" "$path"; done | wl-copy -t text/uri-list',
+  "yank",
+]
+desc = "Yank files and copy file URIs to system clipboard"
+
+# 按 cz 将当前悬停的文件或目录压缩成 tar.gz。
+[[mgr.prepend_keymap]]
+on = [ "c", "z" ]
+run = 'shell --block -- set -- %h; path=$1; name=$(basename "$path"); dir=$(dirname "$path"); tar -C "$dir" -czf "$dir/$name.tar.gz" "$name"'
+desc = "Compress hovered file or folder to tar.gz"
+
 # 按 + 放大图片预览。
 [[mgr.prepend_keymap]]
 on = [ "+" ]
