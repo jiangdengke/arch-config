@@ -63,7 +63,7 @@ CompactInputMethodInformation=True
 # 显示第一个输入法的信息
 ShowFirstInputMethodInformation=True
 # 默认页大小
-DefaultPageSize=5
+DefaultPageSize=7
 # 覆盖 XKB 选项
 OverrideXkbOption=False
 # 自定义 XKB 选项
@@ -80,4 +80,3 @@ AllowInputMethodForPassword=False
 ShowPreeditForPassword=False
 # 保存用户数据的时间间隔（以分钟为单位）
 AutoSavePeriod=30
-
