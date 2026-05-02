@@ -10,7 +10,7 @@ configuration {
     display-run: "";
     display-ssh: "";
     drun-display-format: "{name}";
-    font: "MesloLGL Nerd Font 11";
+    font: "MesloLGL Nerd Font 11, LXGW WenKai Mono 11";
     modi: "window,run,drun,combi,ssh";
     show-icons: true;
     icon-theme: "Papirus";
@@ -61,7 +61,7 @@ prompt {
     border-radius: 8px;
     padding: 8px 12px;
     text-color: @bg0;
-    font: "MesloLGL Nerd Font Bold 11";
+    font: "MesloLGL Nerd Font Bold 11, LXGW WenKai Mono 11";
 }
 
 entry {

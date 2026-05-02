@@ -1,5 +1,5 @@
 # Mako 全局配置。
-font=MesloLGL Nerd Font 11
+font=MesloLGL Nerd Font 11, LXGW WenKai Mono 11
 layer=overlay
 anchor=top-right
 max-visible=5

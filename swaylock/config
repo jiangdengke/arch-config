@@ -4,7 +4,7 @@ show-keyboard-layout
 
 # 时间与日期显示。
 clock
-font=MesloLGL Nerd Font
+font=LXGW WenKai Mono
 font-size=34
 timestr=%H:%M
 datestr=%Y年%m月%d日 %A

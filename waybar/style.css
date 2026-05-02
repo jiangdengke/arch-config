@@ -7,8 +7,8 @@
   border: none;
   /* 默认不使用圆角，由具体模块单独控制。 */
   border-radius: 0px;
-  /* 优先使用 Nerd Font，其次中文字体。 */
-  font-family: "MesloLGL Nerd Font", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
+  /* 优先使用 Nerd Font，其次使用统一的中文字体。 */
+  font-family: "MesloLGL Nerd Font", "LXGW WenKai Mono", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
   /* 默认字重。 */
   font-weight: 500;
   /* 全局字号。 */
@@ -38,7 +38,7 @@ tooltip {
   /* tooltip 内边距。 */
   padding: 12px;
   /* tooltip 同样使用与 bar 一致的字体。 */
-  font-family: "MesloLGL Nerd Font", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
+  font-family: "MesloLGL Nerd Font", "LXGW WenKai Mono", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
 }
 
 /* 时钟日历 tooltip 的额外样式。 */
@@ -48,7 +48,7 @@ tooltip.clock {
   /* 保证日历最小宽度。 */
   min-width: 280px;
   /* 继续沿用统一字体。 */
-  font-family: "MesloLGL Nerd Font", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
+  font-family: "MesloLGL Nerd Font", "LXGW WenKai Mono", "Noto Sans CJK SC", "WenQuanYi Zen Hei";
 }
 
 /* 工作区按钮默认样式。 */
