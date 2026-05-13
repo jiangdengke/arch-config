@@ -61,12 +61,12 @@ prepend_rules = [
 
 # 在所有文件上追加 Git 状态抓取器，用于显示仓库状态。
 [[plugin.prepend_fetchers]]
-id = "git"
 url = "*"
 run = "git"
+group = "git"
 
 # 在所有目录上也追加 Git 状态抓取器。
 [[plugin.prepend_fetchers]]
-id = "git"
 url = "*/"
 run = "git"
+group = "git"
