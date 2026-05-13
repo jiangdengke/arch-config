@@ -644,6 +644,12 @@ binds {
     Ctrl+Print { spawn "~/.local/bin/screenshot" "screen"; }
     Alt+Print { screenshot-window; }
 
+    // 录屏：再次按同一快捷键停止录制。
+    Mod+Ctrl+Shift+R { spawn "~/.local/bin/record-screen" "screen" "audio"; }
+    Mod+Alt+Shift+R { spawn "~/.local/bin/record-screen" "area" "audio"; }
+    Mod+Ctrl+Shift+Alt+R { spawn "~/.local/bin/record-screen" "screen" "no-audio"; }
+    Mod+Ctrl+Alt+R { spawn "~/.local/bin/record-screen" "area" "no-audio"; }
+
     // 有些远程桌面或软件 KVM 会请求 niri 暂停处理这些快捷键，
     // 以便把按键原样转发给远端机器。
     // 最好保留一个“逃生键”，否则某个 buggy 应用可能把你会话锁死。

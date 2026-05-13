@@ -89,6 +89,7 @@ link_file "$repo_root/fontconfig/conf.d/61-zh-fonts.conf" "$HOME/.config/fontcon
 link_file "$repo_root/swww/swww-random.sh" "$HOME/.config/swww-random.sh"
 link_file "$repo_root/scripts/lock-screen.sh" "$HOME/.local/bin/lock-screen"
 link_file "$repo_root/scripts/screenshot.sh" "$HOME/.local/bin/screenshot"
+link_file "$repo_root/scripts/record-screen.sh" "$HOME/.local/bin/record-screen"
 link_file "$repo_root/scripts/toggle-mako-dnd.sh" "$HOME/.local/bin/toggle-mako-dnd"
 
 # Git
