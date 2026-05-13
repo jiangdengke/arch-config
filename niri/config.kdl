@@ -80,6 +80,13 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
+// 关闭鼠标移动到屏幕角落自动打开 Overview，保留快捷键手动切换。
+gestures {
+    hot-corners {
+        off
+    }
+}
+
 // 你可以按输出名称单独配置显示器。
 // 输出名称可在 niri 运行时通过 `niri msg outputs` 查看。
 // 笔记本内屏通常叫做 "eDP-1"。
