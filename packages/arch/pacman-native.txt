@@ -66,6 +66,9 @@ php-pgsql
 php-sqlite
 pipewire-alsa
 pipewire-pulse
+qt5ct
+qt6ct
+rime-wanxiang-pinyin
 rofi
 sddm
 slurp
@@ -76,6 +79,9 @@ swaylock
 timeshift
 tmux
 tree
+ttf-firacode-nerd
+ttf-lxgw-wenkai-mono
+ttf-maplemono
 ttf-meslo-nerd
 ttf-nerd-fonts-symbols
 unixodbc

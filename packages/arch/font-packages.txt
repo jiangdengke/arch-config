@@ -1,0 +1,11 @@
+adobe-source-han-serif-cn-fonts
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+noto-fonts-extra
+ttf-firacode-nerd
+ttf-lxgw-wenkai-mono
+ttf-maplemono
+ttf-meslo-nerd
+ttf-nerd-fonts-symbols
+wqy-zenhei

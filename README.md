@@ -70,6 +70,9 @@ xargs -r sudo pacman -S --needed -- < packages/arch/pacman-native.txt
 # 如果目标机器还没有 paru，请先手动安装 paru，再恢复 AUR / foreign 包
 xargs -r paru -S --needed -- < packages/arch/pacman-foreign.txt
 
+# 单独补齐当前桌面配置依赖的字体，并刷新 fontconfig 缓存
+./scripts/install-arch-fonts.sh
+
 ./install.sh
 
 # 如果想把账户默认 shell 也切成 zsh
@@ -77,6 +80,7 @@ chsh -s /usr/bin/zsh
 ```
 
 截图、锁屏、通知链路依赖的核心包也已经纳入清单：`mako`、`hyprlock`、`swaylock`、`grim`、`slurp`、`wl-clipboard`、`libnotify`。
+字体链路单独收敛在 `packages/arch/font-packages.txt`，可用 `./scripts/install-arch-fonts.sh` 安装并刷新缓存。
 默认锁屏快捷键 `Super+Alt+L` 现在会启动 Hyprlock；仓库仍保留 `swaylock` 配置和旧脚本作为回退方案。
 壁纸脚本会优先扫描 `~/Pictures/images`，并继续兼容 `~/Pictures/images/images`、`~/Pictures/wallpapers`、`~/Pictures/Wallpapers`、`~/Pictures` 和 `/usr/share/backgrounds`。
 `install.sh` 会顺手创建 `~/Pictures/images`，新机器把图片放进去即可。
@@ -87,6 +91,7 @@ chsh -s /usr/bin/zsh
 
 - `pacman-native.txt`：官方仓库里显式安装的包
 - `pacman-foreign.txt`：AUR / foreign 包
+- `font-packages.txt`：当前桌面字体栈需要的字体包
 - `flatpak.txt`：Flatpak 应用，如果存在
 
 这些文件只是快照，不负责安装。

@@ -8,6 +8,7 @@
 
 - `arch/pacman-native.txt`：官方仓库里显式安装的包
 - `arch/pacman-foreign.txt`：AUR / foreign 包
+- `arch/font-packages.txt`：当前桌面字体栈需要的字体包
 - `arch/flatpak.txt`：Flatpak 应用，如果存在
 
 ## 在另一台机器上恢复
@@ -15,6 +16,7 @@
 ```bash
 sudo pacman -S --needed - < arch/pacman-native.txt
 paru -S --needed - < arch/pacman-foreign.txt
+../scripts/install-arch-fonts.sh
 ```
 
 ## 这里没覆盖的内容

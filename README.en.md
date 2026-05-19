@@ -70,6 +70,9 @@ xargs -r sudo pacman -S --needed -- < packages/arch/pacman-native.txt
 # If `paru` is not installed yet, install it first, then restore AUR / foreign packages.
 xargs -r paru -S --needed -- < packages/arch/pacman-foreign.txt
 
+# Install the font stack used by the desktop configs and refresh fontconfig.
+./scripts/install-arch-fonts.sh
+
 ./install.sh
 
 # If you also want the account login shell to default to zsh
@@ -77,6 +80,7 @@ chsh -s /usr/bin/zsh
 ```
 
 The screenshot, lock-screen, and notification flow now depends on `mako`, `hyprlock`, `swaylock`, `grim`, `slurp`, `wl-clipboard`, and `libnotify`, and these are tracked in the package inventory.
+The font stack is tracked separately in `packages/arch/font-packages.txt`; use `./scripts/install-arch-fonts.sh` to install it and refresh the cache.
 The default `Super+Alt+L` lock-screen binding now launches Hyprlock; the repo still keeps the `swaylock` config and legacy script as a fallback path.
 The wallpaper helper now prefers `~/Pictures/images`, while still scanning `~/Pictures/images/images`, `~/Pictures/wallpapers`, `~/Pictures/Wallpapers`, `~/Pictures`, and `/usr/share/backgrounds`.
 `install.sh` also creates `~/Pictures/images` so a fresh machine has a conventional drop-in wallpaper directory.
@@ -87,6 +91,7 @@ The wallpaper helper now prefers `~/Pictures/images`, while still scanning `~/Pi
 
 - `pacman-native.txt`: explicitly installed packages from official repos
 - `pacman-foreign.txt`: explicitly installed AUR / foreign packages
+- `font-packages.txt`: font packages required by the current desktop font stack
 - `flatpak.txt`: Flatpak applications, if present
 
 These files are snapshots only. They do not perform installation.
