@@ -19,7 +19,7 @@
   // 中间模块：工作区和当前窗口标题。
   "modules-center": ["custom/padd", "custom/l_end", "niri/workspaces", "niri/window", "custom/r_end", "custom/padd"],
   // 右侧模块：通知、托盘、蓝牙、网络、亮度、音量、电池。
-  "modules-right": ["custom/padd", "custom/l_end", "custom/notifications", "tray", "bluetooth", "network", "backlight", "pulseaudio", "battery", "custom/r_end"],
+  "modules-right": ["custom/padd", "custom/l_end", "custom/notifications", "tray", "bluetooth", "custom/network", "backlight", "pulseaudio", "battery", "custom/r_end"],
 
   // Niri 工作区模块设置。
   "niri/workspaces": {
@@ -87,6 +87,18 @@
     "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}\t{icon} {device_battery_percentage}%"
+  },
+
+  // 网络状态模块。
+  "custom/network": {
+    // 直接按默认路由判断当前真实联网接口，兼容 iwd + systemd-networkd。
+    "exec": "~/.config/waybar/scripts/network-status.sh",
+    // 脚本返回 JSON，包含文本、状态类名和 tooltip。
+    "return-type": "json",
+    // 每 2 秒刷新一次。
+    "interval": 2,
+    // 启用 tooltip。
+    "tooltip": true
   },
 
   // 背光模块设置。

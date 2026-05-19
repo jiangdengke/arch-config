@@ -114,6 +114,7 @@ tooltip.clock {
 #pulseaudio,
 #bluetooth,
 #network,
+#custom-network,
 #workspaces,
 #tray,
 #backlight,
@@ -264,5 +265,27 @@ tooltip.clock {
 
 /* 网络断开时使用紧急色。 */
 #network.disconnected {
+  color: @urgent;
+}
+
+/* 自定义网络模块：有线、无线和断网分别使用不同状态色。 */
+#custom-network.ethernet {
+  color: @success;
+}
+
+#custom-network.wifi {
+  color: @accent;
+}
+
+#custom-network {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+#custom-network.linked {
+  color: @warning;
+}
+
+#custom-network.disconnected {
   color: @urgent;
 }
