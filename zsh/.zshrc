@@ -166,6 +166,43 @@ proxytest() {
 }
 # ==========================================
 
+# 启动 Codex 前自动刷新 Stitch MCP 需要的 Google access token。
+codex() {
+  local gcloud_config="${CLOUDSDK_CONFIG:-$HOME/code/dan/cg/.gcloud}"
+  local gcloud_project="${CLOUDSDK_CORE_PROJECT:-rare-gist-479216-f8}"
+  local quota_project="${GOOGLE_CLOUD_QUOTA_PROJECT:-$gcloud_project}"
+  local default_proxy="http://${PROXY_HOST:-127.0.0.1}:${PROXY_PORT:-7890}"
+  local http_proxy_value="${HTTP_PROXY:-${http_proxy:-$default_proxy}}"
+  local https_proxy_value="${HTTPS_PROXY:-${https_proxy:-$default_proxy}}"
+  local no_proxy_value="${NO_PROXY:-${no_proxy:-localhost,127.0.0.1,::1}}"
+  local token
+
+  if [[ -z "${CODEX_SKIP_STITCH:-}" ]]; then
+    token="$(
+      HTTP_PROXY="$http_proxy_value" \
+      HTTPS_PROXY="$https_proxy_value" \
+      NO_PROXY="$no_proxy_value" \
+      CLOUDSDK_CONFIG="$gcloud_config" \
+      CLOUDSDK_CORE_PROJECT="$gcloud_project" \
+      GOOGLE_CLOUD_QUOTA_PROJECT="$quota_project" \
+      gcloud auth print-access-token --quiet
+    )" || {
+      echo "codex: failed to get Google Cloud access token for Stitch MCP." >&2
+      echo "codex: set CODEX_SKIP_STITCH=1 to start Codex without Stitch." >&2
+      return 1
+    }
+  fi
+
+  HTTP_PROXY="$http_proxy_value" \
+  HTTPS_PROXY="$https_proxy_value" \
+  NO_PROXY="$no_proxy_value" \
+  CLOUDSDK_CONFIG="$gcloud_config" \
+  CLOUDSDK_CORE_PROJECT="$gcloud_project" \
+  GOOGLE_CLOUD_QUOTA_PROJECT="$quota_project" \
+  GOOGLE_CLOUD_ACCESS_TOKEN="$token" \
+  command codex "$@"
+}
+
 # 读取仅本机使用的私有配置和敏感信息覆盖项。
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
