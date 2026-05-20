@@ -15,6 +15,7 @@ These files are snapshots of the current Arch machine's software inventory.
 
 ```bash
 sudo pacman -S --needed - < arch/pacman-native.txt
+# `paru` needs to be installed separately before restoring foreign packages.
 paru -S --needed - < arch/pacman-foreign.txt
 ../scripts/install-arch-fonts.sh
 ```

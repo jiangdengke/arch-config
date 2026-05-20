@@ -55,7 +55,7 @@ It also manages `~/.config/mako`, `~/.config/swaylock`, and links helper scripts
 ## Restore on another Arch machine
 
 1. Clone this repo to `~/arch-config`
-2. Install packages from `packages/arch/` first
+2. Install packages from `packages/arch/` first, and install `paru` separately before foreign packages
 3. Run `./install.sh`
 4. If you want the login shell to be `zsh` as well, run `chsh -s /usr/bin/zsh`
 
@@ -68,6 +68,7 @@ cd ~/arch-config
 sudo pacman -S --needed - < packages/arch/pacman-native.txt
 
 # If `paru` is not installed yet, install it first, then restore AUR / foreign packages.
+# Install `paru` separately, then run the next line.
 paru -S --needed - < packages/arch/pacman-foreign.txt
 
 # Install the font stack used by the desktop configs and refresh fontconfig.

@@ -55,7 +55,7 @@ cd ~/arch-config
 ## 在另一台 Arch 上恢复
 
 1. 把仓库克隆到 `~/arch-config`
-2. 先按 `packages/arch/` 里的清单安装软件
+2. 先按 `packages/arch/` 里的清单安装软件，`paru` 需要先单独装好
 3. 再执行 `./install.sh`
 4. 如果希望登录 shell 也是 `zsh`，再执行 `chsh -s /usr/bin/zsh`
 
@@ -67,7 +67,8 @@ cd ~/arch-config
 
 sudo pacman -S --needed - < packages/arch/pacman-native.txt
 
-# 如果目标机器还没有 paru，请先手动安装 paru，再恢复 AUR / foreign 包
+# 如果目标机器还没有 paru，请先装 paru，再恢复 AUR / foreign 包
+# 例如可以先安装 paru，然后再执行下面这一行
 paru -S --needed - < packages/arch/pacman-foreign.txt
 
 # 单独补齐当前桌面配置依赖的字体，并刷新 fontconfig 缓存
