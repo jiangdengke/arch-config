@@ -65,10 +65,10 @@ Example:
 git clone git@github.com:jiangdengke/arch-config.git ~/arch-config
 cd ~/arch-config
 
-xargs -r sudo pacman -S --needed -- < packages/arch/pacman-native.txt
+sudo pacman -S --needed - < packages/arch/pacman-native.txt
 
 # If `paru` is not installed yet, install it first, then restore AUR / foreign packages.
-xargs -r paru -S --needed -- < packages/arch/pacman-foreign.txt
+paru -S --needed - < packages/arch/pacman-foreign.txt
 
 # Install the font stack used by the desktop configs and refresh fontconfig.
 ./scripts/install-arch-fonts.sh

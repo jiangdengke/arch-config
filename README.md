@@ -65,10 +65,10 @@ cd ~/arch-config
 git clone git@github.com:jiangdengke/arch-config.git ~/arch-config
 cd ~/arch-config
 
-xargs -r sudo pacman -S --needed -- < packages/arch/pacman-native.txt
+sudo pacman -S --needed - < packages/arch/pacman-native.txt
 
 # 如果目标机器还没有 paru，请先手动安装 paru，再恢复 AUR / foreign 包
-xargs -r paru -S --needed -- < packages/arch/pacman-foreign.txt
+paru -S --needed - < packages/arch/pacman-foreign.txt
 
 # 单独补齐当前桌面配置依赖的字体，并刷新 fontconfig 缓存
 ./scripts/install-arch-fonts.sh
